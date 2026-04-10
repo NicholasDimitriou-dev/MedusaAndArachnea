@@ -1,29 +1,29 @@
 using UnityEngine;
 
-public class Arachnea : MonoBehaviour
+public class Arachnea : Player
 {
-    private float gravity = 9.8f;
 
+    // public float gravMod = 1f; 
     private bool isOnWall = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Interact()
+    public override void Interact()
     {
         if (isOnWall)
         {
-            gravity = 9.8f;
+            gravityMod = 1f;
             isOnWall = false;
         }
         else
         {
             if (wallClimb())
             {
-                gravity = 0f;
+                gravityMod = 0f;
                 isOnWall = true;
             }
             else
             {
-                gravity = 9.8f;
+                gravityMod = 1f;
                 isOnWall = false;
             }
         }
@@ -33,8 +33,11 @@ public class Arachnea : MonoBehaviour
     private bool wallClimb()
     {
         float interactDistance = 2f;
+        Debug.DrawRay(transform.position, Vector3.left* interactDistance, Color.greenYellow);
+        Debug.DrawRay(transform.position, Vector3.right * interactDistance, Color.greenYellow);
         if (Physics.Raycast(transform.position, Vector3.left, out RaycastHit raycastHit, interactDistance))
         {
+            
             if (raycastHit.transform.TryGetComponent(out Wall wall))
             {
                 return true;
@@ -42,6 +45,7 @@ public class Arachnea : MonoBehaviour
         }
         else if (Physics.Raycast(transform.position, Vector3.right, out RaycastHit raycastHitright, interactDistance))
         {
+           
             if (raycastHitright.transform.TryGetComponent(out Wall wall))
             {
                 return true;
