@@ -20,51 +20,36 @@ public class Player : MonoBehaviour{
     Quaternion facingLeft;
     public float direction;
     private CharacterController controller;
-    private KeyControl up;
-    private KeyControl down;
-    private KeyControl left;
-    private KeyControl right;
-    private KeyControl dash;
-    private KeyControl interact;
-    private ButtonControl controllerUp;
-    private ButtonControl controllerDown;
-    private ButtonControl controllerLeft;
-    private ButtonControl controllerRight;
-    private ButtonControl controllerDash;
-    private ButtonControl controllerInteract;
+    private InputAction up;
+    private InputAction down;
+    private InputAction left;
+    private InputAction right;
+    private InputAction dash;
+    private InputAction interact;
+    private Controls controls;
 
     public Character character;
     void Awake()
     {
+        controls = new Controls();
+        controls.Player.Enable();
         if (character == Character.Arachnea)
         {
-            up = Keyboard.current.upArrowKey;
-            down = Keyboard.current.downArrowKey;
-            left = Keyboard.current.leftArrowKey;
-            right = Keyboard.current.rightArrowKey;
-            dash = Keyboard.current.rightShiftKey;
-            interact = Keyboard.current.enterKey;
-            // controllerUp = Gamepad.current.buttonNorth;
-            // controllerDown = Gamepad.current.buttonSouth;
-            // controllerLeft = Gamepad.current.buttonWest;
-            // controllerRight = Gamepad.current.buttonEast;
-            // controllerDash = Gamepad.current.rightShoulder;
-            // controllerInteract = Gamepad.current.rightTrigger;
+            up = controls.Player.ArachneaJump;
+            down = controls.Player.ArachneaDrop;
+            left = controls.Player.ArachneaWalkLeft;
+            right = controls.Player.ArachneaWalkRight;
+            dash = controls.Player.ArachneaDash;
+            interact = controls.Player.ArachneaInteract;
         }
         else
         {
-            up = Keyboard.current.wKey;
-            down = Keyboard.current.sKey;
-            left = Keyboard.current.aKey;
-            right = Keyboard.current.dKey;
-            dash = Keyboard.current.leftShiftKey;
-            interact = Keyboard.current.eKey;
-            // controllerUp = Gamepad.current.dpad.up;
-            // controllerDown = Gamepad.current.dpad.down;
-            // controllerLeft = Gamepad.current.dpad.left;
-            // controllerRight = Gamepad.current.dpad.right;
-            // controllerDash = Gamepad.current.leftShoulder;
-            // controllerInteract = Gamepad.current.leftTrigger;
+            up = controls.Player.MedusaJump;
+            down = controls.Player.MedusaDrop;
+            left = controls.Player.MedusaWalkLeft;
+            right = controls.Player.MedusaWalkRight;
+            dash = controls.Player.MedusaDash;
+            interact = controls.Player.MedusaInteract;
         }
     }
     void Start()
@@ -80,14 +65,10 @@ public class Player : MonoBehaviour{
     void Update()
     {
         float direction = 0f;
-        // if(right.isPressed||controllerRight.isPressed) direction += 1f;
-        // if(left.isPressed||controllerLeft.isPressed) direction -= 1f;
-        // bool jumpPressedThisFrame = up.wasPressedThisFrame||controllerUp.wasPressedThisFrame;
-        // bool jumpHeld = up.isPressed||controllerUp.isPressed;
-        if(right.isPressed) direction += 1f;
-        if(left.isPressed) direction -= 1f;
-        bool jumpPressedThisFrame = up.wasPressedThisFrame;
-        bool jumpHeld = up.isPressed;
+        if(right.IsPressed()) direction += 1f;
+        if(left.IsPressed()) direction -= 1f;
+        bool jumpPressedThisFrame = up.WasPressedThisFrame();
+        bool jumpHeld = up.IsPressed();
 
         
 

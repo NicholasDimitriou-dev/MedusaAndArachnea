@@ -7,9 +7,54 @@
             "id": "df70fa95-8a34-4494-b137-73ab6b9c7d37",
             "actions": [
                 {
-                    "name": "ArachneInteract",
+                    "name": "ArachneaInteract",
                     "type": "Button",
                     "id": "7e0b1b17-2efd-4564-8d98-e4dc49735d43",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ArachneaJump",
+                    "type": "Button",
+                    "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ArachneaWalkLeft",
+                    "type": "Button",
+                    "id": "78cb16e4-349f-4532-a9c9-5d899bb3c2e4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ArachneaWalkRight",
+                    "type": "Button",
+                    "id": "afb78b35-be0e-4514-af68-ffef99518552",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ArachneaDash",
+                    "type": "Button",
+                    "id": "0f5c1d91-fd25-4c0a-b3ff-7fb598b5fdde",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ArachneaDrop",
+                    "type": "Button",
+                    "id": "edbcea5c-1724-4666-b6cd-b3e1508194fc",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -25,15 +70,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ArachneJump",
-                    "type": "Button",
-                    "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "MedusaJump",
                     "type": "Button",
                     "id": "26e7b2db-ec92-431e-b7b3-b7cfcf80c8ce",
@@ -43,9 +79,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ArachneDash",
+                    "name": "MedusaWalkLeft",
                     "type": "Button",
-                    "id": "0f5c1d91-fd25-4c0a-b3ff-7fb598b5fdde",
+                    "id": "fd4afb82-965c-4d00-bae9-ad3c301ce0c1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MedusaWalkRight",
+                    "type": "Button",
+                    "id": "78a8c53d-3200-4a3d-86fa-325c1c3c8d90",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -61,18 +106,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ArachneWalk",
+                    "name": "MedusaDrop",
                     "type": "Button",
-                    "id": "345e25bc-d266-40ee-b1ba-8d944b17fbe7",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MedusaWalk",
-                    "type": "Button",
-                    "id": "9f29f636-934a-4391-a7b0-7562ecd84f1e",
+                    "id": "ed67d090-0813-403d-b6b4-6a04b1c4d9cb",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -83,40 +119,29 @@
                 {
                     "name": "",
                     "id": "eb40bb66-4559-4dfa-9a2f-820438abb426",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "ArachneJump",
+                    "action": "ArachneaJump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "daba33a1-ad0c-4742-a909-43ad1cdfbeb6",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "d976bb71-b2a7-4c4d-a152-05850a925772",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
-                    "action": "ArachneJump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "603f3daf-40bd-4854-8724-93e8017f59e3",
-                    "path": "<XRController>/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "ArachneJump",
+                    "groups": "",
+                    "action": "ArachneaJump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "1c04ea5f-b012-41d1-a6f7-02e963b52893",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -126,11 +151,11 @@
                 },
                 {
                     "name": "",
-                    "id": "b3f66d0b-7751-423f-908b-a11c5bd95930",
-                    "path": "<Gamepad>/buttonNorth",
+                    "id": "71347963-f0f5-4155-a57d-990001d6712f",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "",
                     "action": "MedusaInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -142,14 +167,36 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ArachneInteract",
+                    "action": "ArachneaInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0535feb5-08b6-4f24-842c-9d43d72134bc",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ArachneaInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "0eae8e54-80ae-4678-8e43-4a20056a6899",
-                    "path": "",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MedusaJump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "87086a26-06ee-46ac-ab5c-882eafe8febd",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -160,18 +207,29 @@
                 {
                     "name": "",
                     "id": "870c606b-9e3a-4f3a-a652-caaeafa53285",
-                    "path": "",
+                    "path": "<Keyboard>/rightShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ArachneDash",
+                    "action": "ArachneaDash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c6b3b74-f6dc-48e1-9135-a3079c54a5aa",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ArachneaDash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "61078d96-83ba-42d8-90e7-d620a96da459",
-                    "path": "",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -180,70 +238,147 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "30e7b4b8-c699-456c-94c8-1864757af88c",
-                    "path": "1DAxis",
+                    "name": "",
+                    "id": "c1079f37-61c9-4402-9ee5-eebfaee482c7",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ArachneWalk",
-                    "isComposite": true,
+                    "action": "MedusaDash",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "33bfcdbf-9f13-405f-94bd-f9663b4e921c",
-                    "path": "<Keyboard>/a",
+                    "name": "",
+                    "id": "6fe4dceb-2cbd-4525-bab2-461123845138",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ArachneWalk",
+                    "action": "ArachneaDrop",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "7a61d6dc-cca5-47ef-8cb4-ce9e0f3a38da",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ArachneWalk",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "7743a43a-40b8-45a1-92b6-848b053083b5",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MedusaWalk",
-                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "7987a251-cdbd-4293-89a7-3cd4bfa94d98",
+                    "name": "",
+                    "id": "20848bb6-e137-4252-a648-61beb15eb2dc",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ArachneaDrop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f7f680cf-4200-4967-bc7f-b9344701f5c2",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MedusaDrop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4cfcc05b-dedf-4c5e-82be-5a88d03d93b1",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MedusaDrop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "79f33f83-d4fe-49b1-96e0-48d2b0919379",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MedusaWalk",
+                    "action": "ArachneaWalkLeft",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "positive",
-                    "id": "5ce1f643-51c3-4e9f-be08-aceceb5750fb",
+                    "name": "",
+                    "id": "be4ac6c6-923e-4f15-a690-63955b0ec51c",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ArachneaWalkLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0fceabef-3f49-4239-9a94-8687940b59a5",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MedusaWalk",
+                    "action": "ArachneaWalkRight",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f5c8fc64-dc58-425d-9269-71b9cd7f7796",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ArachneaWalkRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e73d5623-fb2a-4108-9485-13844ef0e36a",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MedusaWalkLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "995750dc-155c-46b9-bd7b-b2aa7430611d",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MedusaWalkLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d96ed17-a6ac-46bc-ac27-687a657d6842",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MedusaWalkRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fa1143f-5d5a-4499-a85d-025e9854db1e",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MedusaWalkRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
