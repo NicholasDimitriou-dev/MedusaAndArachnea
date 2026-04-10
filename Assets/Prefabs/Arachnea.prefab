@@ -135,6 +135,7 @@ MonoBehaviour:
   groundAcceleration: 15
   apexHeight: 4.5
   apexTime: 0.5
+  gravityMod: 1
   character: 0
 --- !u!114 &5435039611308426182
 MonoBehaviour:
@@ -148,6 +149,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eeba1f4c56c8d74f9eabee70e5e4a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arachnea
+  walkSpeed: 5
+  runSpeed: 10
+  groundAcceleration: 15
+  apexHeight: 4.5
+  apexTime: 0.5
+  gravityMod: 1
+  character: 0
 --- !u!54 &572161741233811225
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -174,6 +182,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
+  m_Constraints: 114
   m_CollisionDetection: 0
 --- !u!143 &6781827135447413423
 CharacterController:

@@ -14,9 +14,11 @@ public class Player : MonoBehaviour{
     public float groundAcceleration = 15f;
     public float apexHeight = 4.5f;
     public float apexTime = .5f;
+    public float gravityMod = 1f;
     Vector2 _velocity;
     Quaternion facingRight;
     Quaternion facingLeft;
+    public float direction;
     private CharacterController controller;
     private InputAction up;
     private InputAction down;
@@ -53,9 +55,10 @@ public class Player : MonoBehaviour{
     void Start()
     {
         
+
         controller = GetComponent<CharacterController>();
-        facingRight = Quaternion.Euler(0f,90f,0f);
-        facingLeft = Quaternion.Euler(0f,270f,0f);
+        facingRight = Quaternion.Euler(0f,0f,0f);
+        facingLeft = Quaternion.Euler(0f,180f,0f);
     }
 
     // Update is called once per frame
@@ -67,7 +70,7 @@ public class Player : MonoBehaviour{
         bool jumpPressedThisFrame = up.WasPressedThisFrame();
         bool jumpHeld = up.IsPressed();
 
-        float gravityMod = 1f;
+        
 
         if (controller.isGrounded)
         {
@@ -77,6 +80,8 @@ public class Player : MonoBehaviour{
                 {
                     _velocity.x = 0f;
                 }
+                
+                
                 _velocity.x += direction*groundAcceleration * Time.deltaTime;
                 _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
 
@@ -107,9 +112,18 @@ public class Player : MonoBehaviour{
        
         float deltaX = _velocity.x*Time.deltaTime;
         float deltaY = _velocity.y*Time.deltaTime;
-        Vector3 deltaPosition = new Vector3(deltaX,deltaY,0f);
+        Vector3 deltaPosition = new Vector3(0f,deltaY,deltaX);
         transform.position += deltaPosition;
         controller.Move(deltaPosition);
+        if (interact.isPressed)
+        {
+            Interact();
+        }
     }
+    
 
+    public virtual void Interact()
+    {
+        Debug.Log("not supposed to print");
+    }
 }
