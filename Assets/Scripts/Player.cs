@@ -71,10 +71,58 @@ public class Player : MonoBehaviour{
         bool jumpPressedThisFrame = up.WasPressedThisFrame();
         bool jumpHeld = up.IsPressed();
 
-        
 
-        if (controller.isGrounded)
+        if (!isOnWall)
         {
+            if (controller.isGrounded)
+            {
+                if (direction!= 0f)
+                {
+                    if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
+                    {
+                        _velocity.x = 0f;
+                    }
+                
+                
+                    _velocity.x += direction*groundAcceleration * Time.deltaTime;
+                    _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
+
+                    transform.rotation = (direction >0f) ? facingRight : facingLeft;
+                }
+                else
+                {
+                    _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
+                }
+                if (jumpPressedThisFrame)
+                {
+                    _velocity.y = 2f*apexHeight/apexTime;
+                }
+            }
+            else
+            {
+                if (!jumpHeld)
+                {
+                    gravityMod = 2f;
+                }
+            }
+
+            if (!controller.isGrounded);
+            {
+                float gravity = 2f*apexHeight/(apexTime*apexTime);
+                _velocity.y -= gravity*gravityMod*Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (down.IsPressed())
+            {
+                _velocity.y -= 1f;
+            }
+
+            if (up.IsPressed())
+            {
+                _velocity.y += 1f;
+            }
             if (direction!= 0f)
             {
                 if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
@@ -92,24 +140,8 @@ public class Player : MonoBehaviour{
             {
                 _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
             }
-            if (jumpPressedThisFrame || isOnWall)
-            {
-                _velocity.y = 2f*apexHeight/apexTime;
-            }
         }
-        else
-        {
-            if (!jumpHeld)
-            {
-                gravityMod = 2f;
-            }
-        }
-
-        if (!controller.isGrounded);
-        {
-            float gravity = 2f*apexHeight/(apexTime*apexTime);
-            _velocity.y -= gravity*gravityMod*Time.deltaTime;
-        }
+        
        
         float deltaX = _velocity.x*Time.deltaTime;
         float deltaY = _velocity.y*Time.deltaTime;

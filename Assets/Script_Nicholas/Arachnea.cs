@@ -12,7 +12,7 @@ public class Arachnea : Player
     {
         if (isOnWall)
         {
-            gravityMod = 1f;
+            gravityMod = 2f;
             isOnWall = false;
         }
         else
@@ -24,7 +24,7 @@ public class Arachnea : Player
             }
             else
             {
-                gravityMod = 1f;
+                gravityMod = 2f;
                 isOnWall = false;
             }
         }
