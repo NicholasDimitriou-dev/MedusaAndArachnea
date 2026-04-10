@@ -11,6 +11,10 @@ public class Player : MonoBehaviour{
     Vector2 _velocity;
     Quaternion facingRight;
     Quaternion facingLeft;
+    [SerializeField] private CharacterController medusaController;
+    [SerializeField] private CharacterController arachneController;
+    [SerializeField] private Transform medusaTransform;
+    [SerializeField] private Transform arachneTransform;
     void Start()
     {
         facingRight = Quaternion.Euler(0f,90f,0f);
@@ -28,7 +32,7 @@ public class Player : MonoBehaviour{
 
         float gravityMod = 1f;
 
-        if (IsGrounded())
+        if (arachneController.isGrounded)
         {
             if (direction!= 0f)
             {
@@ -39,7 +43,7 @@ public class Player : MonoBehaviour{
                 _velocity.x += direction*groundAcceleration * Time.deltaTime;
                 _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
 
-                transform.rotation = (direction >0f) ? facingRight : facingLeft;
+                arachneTransform.rotation = (direction >0f) ? facingRight : facingLeft;
             }
             else
             {
@@ -58,30 +62,17 @@ public class Player : MonoBehaviour{
             }
         }
 
-        if (!IsGrounded())
+        if (!arachneController.isGrounded)
         {
             float gravity = 2f*apexHeight/(apexTime*apexTime);
             _velocity.y -= gravity*gravityMod*Time.deltaTime;
         }
-        
        
         float deltaX = _velocity.x*Time.deltaTime;
         float deltaY = _velocity.y*Time.deltaTime;
         Vector3 deltaPosition = new Vector3(deltaX,deltaY,0f);
-        transform.position += deltaPosition;
-        Mathf.Clamp(transform.position.y,0.5f,1000f);
+        arachneTransform.position += deltaPosition;
         
-    }
-
-    private bool IsGrounded()
-    {
-        if(transform.position.y <= 0.5f){
-            Vector3 groundedPosition = new Vector3(transform.position.x,0.5f,transform.position.z);
-            transform.position = groundedPosition;
-            return true;
-        }
-        return false;   
-         
     }
 
 }
