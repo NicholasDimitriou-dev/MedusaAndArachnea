@@ -15,6 +15,7 @@ public class Player : MonoBehaviour{
     public float apexHeight = 4.5f;
     public float apexTime = .5f;
     public float gravityMod = 1f;
+    public bool isOnWall = false;
     Vector2 _velocity;
     Quaternion facingRight;
     Quaternion facingLeft;
@@ -62,7 +63,7 @@ public class Player : MonoBehaviour{
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         float direction = 0f;
         if(right.IsPressed()) direction += 1f;
@@ -91,7 +92,7 @@ public class Player : MonoBehaviour{
             {
                 _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
             }
-            if (jumpPressedThisFrame)
+            if (jumpPressedThisFrame || isOnWall)
             {
                 _velocity.y = 2f*apexHeight/apexTime;
             }
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour{
             }
         }
 
-        if (!controller.isGrounded)
+        if (!controller.isGrounded);
         {
             float gravity = 2f*apexHeight/(apexTime*apexTime);
             _velocity.y -= gravity*gravityMod*Time.deltaTime;
@@ -115,7 +116,7 @@ public class Player : MonoBehaviour{
         Vector3 deltaPosition = new Vector3(0f,deltaY,deltaX);
         transform.position += deltaPosition;
         controller.Move(deltaPosition);
-        if (interact.isPressed)
+        if (interact.IsPressed())
         {
             Interact();
         }
