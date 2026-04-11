@@ -70,7 +70,10 @@ public class Player : MonoBehaviour{
         bool jumpPressedThisFrame = up.WasPressedThisFrame();
         bool jumpHeld = up.IsPressed();
 
-        
+        if (jumpPressedThisFrame)
+        {
+            Jump();
+        }
 
         if (controller.isGrounded)
         {
@@ -115,13 +118,16 @@ public class Player : MonoBehaviour{
         Vector3 deltaPosition = new Vector3(0f,deltaY,deltaX);
         transform.position += deltaPosition;
         controller.Move(deltaPosition);
-        if (interact.isPressed)
+        if (interact.IsPressed())
         {
             Interact();
         }
     }
     
-
+    public virtual void Jump()
+    {
+        Debug.Log("not supposed to print");
+    }
     public virtual void Interact()
     {
         Debug.Log("not supposed to print");
