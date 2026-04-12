@@ -8,9 +8,10 @@ public class Enemy : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TurnToStone(Transform stonePrefab)
     {
-        
+        var obj = Instantiate(stonePrefab);
+        obj.transform.position = transform.position;
+        Destroy(gameObject);
     }
 }

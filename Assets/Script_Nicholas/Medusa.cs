@@ -22,8 +22,10 @@ public class Medusa : Player
             
             if (raycastHit.transform.TryGetComponent(out Enemy enemy))
             {
-                Destroy(enemy.gameObject);
-                Instantiate(enemyStonePrefab);
+                // Transform location = enemy.gameObject.GetComponent<Transform>();
+                enemy.TurnToStone(enemyStonePrefab);
+                
+                
 
             }
         }
