@@ -115,7 +115,7 @@ public class Player : MonoBehaviour{
         Vector3 deltaPosition = new Vector3(0f,deltaY,deltaX);
         transform.position += deltaPosition;
         controller.Move(deltaPosition);
-        if (interact.isPressed)
+        if (interact.IsPressed())
         {
             Interact();
         }
