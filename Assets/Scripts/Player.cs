@@ -16,6 +16,7 @@ public class Player : MonoBehaviour{
     public float apexTime = .5f;
     public float gravityMod = 1f;
     public bool isOnWall = false;
+    public bool faceRight = true;
     Vector2 _velocity;
     Quaternion facingRight;
     Quaternion facingLeft;
@@ -28,6 +29,8 @@ public class Player : MonoBehaviour{
     private InputAction dash;
     private InputAction interact;
     private Controls controls;
+    
+
 
     public Character character;
     void Awake()
@@ -81,6 +84,7 @@ public class Player : MonoBehaviour{
                     if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
                     {
                         _velocity.x = 0f;
+                        faceRight = !faceRight;
                     }
                 
                 
