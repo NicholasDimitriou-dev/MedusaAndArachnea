@@ -8,7 +8,7 @@ public class Medusa : Player
     {
         Vector3 dir;
         float interactDistance = 5f;
-        if (direction >= 0f)
+        if (faceRight)
         {
             dir = Vector3.forward;
         }
