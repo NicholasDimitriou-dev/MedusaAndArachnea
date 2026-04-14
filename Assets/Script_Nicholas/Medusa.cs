@@ -29,5 +29,12 @@ public class Medusa : Player
 
             }
         }
+        if (Physics.Raycast(transform.position, dir, out RaycastHit hit, interactDistance))
+        {
+            if (hit.transform.TryGetComponent(out Lever lever))
+            {
+                lever.Interact();
+            }
+        }
     }
 }
