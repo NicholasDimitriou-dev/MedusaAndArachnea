@@ -155,7 +155,14 @@ public class Player : MonoBehaviour{
             if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
             {
                 _velocity.x = 0f;
-                faceRight = !faceRight;
+                if (faceRight)
+                {
+                    faceRight = false;
+                }
+                else
+                {
+                    faceRight = true;
+                }
             }
                 
                 
