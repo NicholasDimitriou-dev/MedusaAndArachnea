@@ -338,6 +338,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &536149477 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7856501076152218073, guid: d2f1ea4e31fa128458b9a7bd814647f9, type: 3}
+  m_PrefabInstance: {fileID: 5404098552389061480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1864163191
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,63 +483,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!1001 &1932250508595050621
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3193618606042131420, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
-      propertyPath: m_Name
-      value: Medusa
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479744696688878713, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479744696688878713, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479744696688878713, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479744696688878713, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479744696688878713, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479744696688878713, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479744696688878713, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479744696688878713, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479744696688878713, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479744696688878713, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
 --- !u!1001 &2365972714607495905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -649,6 +597,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2f1ea4e31fa128458b9a7bd814647f9, type: 3}
+--- !u!1001 &5774685038088484335
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 795056799585957347, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: m_Name
+      value: Medusa
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247777848007417214, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247777848007417214, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247777848007417214, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247777848007417214, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247777848007417214, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247777848007417214, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247777848007417214, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247777848007417214, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247777848007417214, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247777848007417214, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538223226030105910, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
+      propertyPath: enemyStonePrefab
+      value: 
+      objectReference: {fileID: 536149477}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a8b0eb38d0bcd434f9ff7969df1e52ba, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -657,5 +666,5 @@ SceneRoots:
   - {fileID: 44064981}
   - {fileID: 1864163195}
   - {fileID: 2365972714607495905}
-  - {fileID: 1932250508595050621}
+  - {fileID: 5774685038088484335}
   - {fileID: 5404098552389061480}

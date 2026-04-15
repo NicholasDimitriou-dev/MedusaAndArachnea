@@ -58,8 +58,6 @@ public class Player : MonoBehaviour{
     }
     void Start()
     {
-        
-
         controller = GetComponent<CharacterController>();
         facingRight = Quaternion.Euler(0f,0f,0f);
         facingLeft = Quaternion.Euler(0f,180f,0f);
@@ -158,7 +156,10 @@ public class Player : MonoBehaviour{
         }
     }
     
-
+    public virtual void Jump()
+    {
+        Debug.Log("not supposed to print");
+    }
     public virtual void Interact()
     {
         Debug.Log("not supposed to print");
