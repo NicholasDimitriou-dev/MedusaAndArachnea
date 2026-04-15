@@ -8,7 +8,7 @@ public class Medusa : Player
     {
         Vector3 dir;
         float interactDistance = 5f;
-        if (direction >= 0f)
+        if (faceRight)
         {
             dir = Vector3.forward;
         }
@@ -22,9 +22,18 @@ public class Medusa : Player
             
             if (raycastHit.transform.TryGetComponent(out Enemy enemy))
             {
-                Destroy(enemy.gameObject);
-                Instantiate(enemyStonePrefab);
+                // Transform location = enemy.gameObject.GetComponent<Transform>();
+                enemy.TurnToStone(enemyStonePrefab);
+                
+                
 
+            }
+        }
+        if (Physics.Raycast(transform.position, dir, out RaycastHit hit, interactDistance))
+        {
+            if (hit.transform.TryGetComponent(out Lever lever))
+            {
+                lever.Interact();
             }
         }
     }

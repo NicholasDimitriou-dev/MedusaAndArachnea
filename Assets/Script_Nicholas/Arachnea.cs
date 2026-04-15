@@ -1,17 +1,14 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Arachnea : Player
 {
-
-    // public float gravMod = 1f; 
-    private bool isOnWall = false;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Interact()
     {
         if (isOnWall)
         {
-            gravityMod = 1f;
+            gravityMod = 2f;
             isOnWall = false;
         }
         else
@@ -23,11 +20,10 @@ public class Arachnea : Player
             }
             else
             {
-                gravityMod = 1f;
+                gravityMod = 2f;
                 isOnWall = false;
             }
         }
-
     }
 
     private bool wallClimb()
