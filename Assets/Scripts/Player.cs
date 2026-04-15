@@ -118,13 +118,13 @@ public class Player : MonoBehaviour{
         {
             if (down.IsPressed())
             {
-                _velocity.y -= 1f;
-            }
-
-            if (up.IsPressed())
+                _velocity.y = -4f;
+            }else if (up.IsPressed())
             {
-                _velocity.y += 1f;
-            }
+                _velocity.y = 4f;
+            }else{
+                _velocity.y = 0f;
+             }
             if (direction!= 0f)
             {
                 if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
