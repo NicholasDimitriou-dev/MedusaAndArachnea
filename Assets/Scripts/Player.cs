@@ -58,8 +58,6 @@ public class Player : MonoBehaviour{
     }
     void Start()
     {
-        
-
         controller = GetComponent<CharacterController>();
         facingRight = Quaternion.Euler(0f,0f,0f);
         facingLeft = Quaternion.Euler(0f,180f,0f);
@@ -77,33 +75,9 @@ public class Player : MonoBehaviour{
 
         if (!isOnWall)
         {
+            DoWalk(direction);    
             if (controller.isGrounded)
             {
-                if (direction!= 0f)
-                {
-                    if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
-                    {
-                        _velocity.x = 0f;
-                        if (faceRight)
-                        {
-                            faceRight = false;
-                        }
-                        else
-                        {
-                            faceRight = true;
-                        }
-                    }
-                
-                
-                    _velocity.x += direction*groundAcceleration * Time.deltaTime;
-                    _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
-
-                    transform.rotation = (direction >0f) ? facingRight : facingLeft;
-                }
-                else
-                {
-                    _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
-                }
                 if (jumpPressedThisFrame)
                 {
                     _velocity.y = 2f*apexHeight/apexTime;
@@ -165,9 +139,34 @@ public class Player : MonoBehaviour{
         }
     }
     
-
+    public virtual void Jump()
+    {
+        Debug.Log("not supposed to print");
+    }
     public virtual void Interact()
     {
         Debug.Log("not supposed to print");
+    }
+
+    private void DoWalk(float direction)
+    {
+        if (direction!= 0f)
+        {
+            if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
+            {
+                _velocity.x = 0f;
+                faceRight = !faceRight;
+            }
+                
+                
+            _velocity.x += direction*groundAcceleration * Time.deltaTime;
+            _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
+
+            transform.rotation = (direction >0f) ? facingRight : facingLeft;
+        }
+        else
+        {
+            _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
+        }
     }
 }
