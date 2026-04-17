@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -17,6 +18,9 @@ public class Player : MonoBehaviour{
     public float gravityMod = 1f;
     public bool isOnWall = false;
     public bool faceRight = true;
+    public float dashTime= .5f;
+    public bool isDashing = false;
+    private Vector3 deltaPosition;
     Vector2 _velocity;
     Quaternion facingRight;
     Quaternion facingLeft;
@@ -71,6 +75,7 @@ public class Player : MonoBehaviour{
         if(left.IsPressed()) direction -= 1f;
         bool jumpPressedThisFrame = up.WasPressedThisFrame();
         bool jumpHeld = up.IsPressed();
+        bool dashPressedThisFrame = dash.WasPerformedThisFrame();
 
 
         if (!isOnWall)
@@ -80,12 +85,13 @@ public class Player : MonoBehaviour{
             {
                 if (jumpPressedThisFrame)
                 {
+
                     _velocity.y = 2f*apexHeight/apexTime;
                 }
             }
             else
             {
-                if (!jumpHeld)
+                if (!jumpHeld&&!isDashing)
                 {
                     gravityMod = 2f;
                 }
@@ -126,19 +132,32 @@ public class Player : MonoBehaviour{
                 _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
             }
         }
-        
-       
+
+        if (dashPressedThisFrame)
+        {
+            StartCoroutine(Dash());
+        }
         float deltaX = _velocity.x*Time.deltaTime;
         float deltaY = _velocity.y*Time.deltaTime;
-        Vector3 deltaPosition = new Vector3(0f,deltaY,deltaX);
+        deltaPosition = new Vector3(0f,deltaY,deltaX);
         transform.position += deltaPosition;
         controller.Move(deltaPosition);
+
         if (interact.IsPressed())
         {
             Interact();
         }
     }
-    
+    private IEnumerator Dash()
+    {
+        isDashing = true;
+        walkSpeed*=3f;
+        gravityMod = 0.125f;
+        yield return new WaitForSeconds(dashTime);
+        walkSpeed/=3f;
+        gravityMod = 1f;
+        isDashing = false;
+    }
     public virtual void Jump()
     {
         Debug.Log("not supposed to print");
@@ -158,7 +177,6 @@ public class Player : MonoBehaviour{
                 faceRight = !faceRight;
             }
                 
-                
             _velocity.x += direction*groundAcceleration * Time.deltaTime;
             _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
 
@@ -169,4 +187,23 @@ public class Player : MonoBehaviour{
             _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
         }
     }
+
+    private void DoDash(float direction){
+        Vector3 dirVector = new Vector3(0,0,direction);
+        RaycastHit hit;
+            if (Physics.Raycast(transform.position, dirVector,out hit, 5f))
+            if(hit.collider!= null){
+                
+            }
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody box = hit.collider.attachedRigidbody;
+        //if (!hit.collider.TryGetComponent(out Stone stone)) return;
+        if (hit.moveDirection.y < -0.3) return;
+        Vector3 pushDir = new Vector3(0, 0, hit.moveDirection.z);
+        box.linearVelocity +=pushDir;
+    }
+
+
 }
