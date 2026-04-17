@@ -12,12 +12,24 @@ public class Button : MonoBehaviour
         {
             objectsOnButton++;
             door.SetOpen(true);
+        } else if (other.TryGetComponent(out Stone stone))
+        {
+            objectsOnButton++;
+            door.SetOpen(true);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent(out Player player))
+        {
+            objectsOnButton--;
+
+            if (objectsOnButton <= 0)
+            {
+                door.SetOpen(false);
+            }
+        }else if (other.TryGetComponent(out Stone stone))
         {
             objectsOnButton--;
 
