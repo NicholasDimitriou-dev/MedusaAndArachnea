@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Destination One
   - Destination Two
+  - Medusa
+  - Arachnea
+  - MDoor
+  - ADoor
   layers:
   - Default
   - TransparentFX
