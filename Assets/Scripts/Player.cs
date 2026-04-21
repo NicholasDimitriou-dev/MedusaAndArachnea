@@ -12,7 +12,7 @@ public class Player : MonoBehaviour{
     public float walkSpeed = 5f;
     public float runSpeed = 10f;
     public float groundAcceleration = 15f;
-    public float apexHeight = 4.5f;
+    public float apexHeight = 40f;
     public float apexTime = .5f;
     public float gravityMod = 1f;
     public bool isOnWall = false;
