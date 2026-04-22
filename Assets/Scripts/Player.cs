@@ -99,7 +99,7 @@ public class Player : MonoBehaviour{
                 }
             }
 
-            if (!controller.isGrounded);
+            if (!controller.isGrounded)
             {
                 float gravity = 2f*apexHeight/(apexTime*apexTime);
                 _velocity.y -= gravity*gravityMod*Time.deltaTime;
