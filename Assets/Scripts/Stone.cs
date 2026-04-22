@@ -13,4 +13,9 @@ public class Stone : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Entered "+ other);
+    }
 }
