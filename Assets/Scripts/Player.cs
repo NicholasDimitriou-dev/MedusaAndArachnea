@@ -19,6 +19,8 @@ public class Player : MonoBehaviour{
     public bool isOnWall = false;
     public bool faceRight = true;
     public float dashTime= .5f;
+    public float dashSpeed = 6f;
+    public float dashGrav = .125f;
     public bool isDashing = false;
     private Vector3 deltaPosition;
     Vector2 _velocity;
@@ -151,10 +153,10 @@ public class Player : MonoBehaviour{
     private IEnumerator Dash()
     {
         isDashing = true;
-        walkSpeed*=3f;
-        gravityMod = 0.125f;
+        walkSpeed*=dashSpeed;
+        gravityMod = dashGrav;
         yield return new WaitForSeconds(dashTime);
-        walkSpeed/=3f;
+        walkSpeed/=dashSpeed;
         gravityMod = 1f;
         isDashing = false;
     }
@@ -188,18 +190,10 @@ public class Player : MonoBehaviour{
         }
     }
 
-    private void DoDash(float direction){
-        Vector3 dirVector = new Vector3(0,0,direction);
-        RaycastHit hit;
-            if (Physics.Raycast(transform.position, dirVector,out hit, 5f))
-            if(hit.collider!= null){
-                
-            }
-    }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody box = hit.collider.attachedRigidbody;
-        //if (!hit.collider.TryGetComponent(out Stone stone)) return;
+        if (!hit.collider.TryGetComponent(out Stone stone)) return;
         if (hit.moveDirection.y < -0.3) return;
         Vector3 pushDir = new Vector3(0, 0, hit.moveDirection.z);
         box.linearVelocity +=pushDir;
