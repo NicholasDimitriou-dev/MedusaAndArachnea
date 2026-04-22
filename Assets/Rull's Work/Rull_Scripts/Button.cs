@@ -6,6 +6,10 @@ public class Button : MonoBehaviour
     [SerializeField] private Door door;
     private int objectsOnButton = 0;
 
+    public void setDoor(Door thisDoor)
+    {
+        door = thisDoor;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Player player))
