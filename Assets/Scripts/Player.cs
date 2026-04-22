@@ -21,6 +21,7 @@ public class Player : MonoBehaviour{
     Vector2 _velocity;
     Quaternion facingRight;
     Quaternion facingLeft;
+    public Transform spawnPoint;
     public float direction;
     private CharacterController controller;
     private InputAction up;
@@ -139,7 +140,11 @@ public class Player : MonoBehaviour{
             Interact();
         }
     }
-    
+
+    public void SetSpawnPoint(Transform spawn)
+    {
+        spawnPoint = spawn;
+    }
     public virtual void Jump()
     {
         Debug.Log("not supposed to print");
