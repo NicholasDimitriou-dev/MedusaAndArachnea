@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -12,10 +13,11 @@ public class Player : MonoBehaviour{
     public float walkSpeed = 5f;
     public float runSpeed = 10f;
     public float groundAcceleration = 15f;
-    public float apexHeight = 4.5f;
+    public float apexHeight = 40f;
     public float apexTime = .5f;
     public float gravityMod = 1f;
     public bool isOnWall = false;
+    public bool faceRight = true;
     Vector2 _velocity;
     Quaternion facingRight;
     Quaternion facingLeft;
@@ -28,6 +30,8 @@ public class Player : MonoBehaviour{
     private InputAction dash;
     private InputAction interact;
     private Controls controls;
+    
+
 
     public Character character;
     void Awake()
@@ -55,8 +59,6 @@ public class Player : MonoBehaviour{
     }
     void Start()
     {
-        
-
         controller = GetComponent<CharacterController>();
         facingRight = Quaternion.Euler(0f,0f,0f);
         facingLeft = Quaternion.Euler(0f,180f,0f);
@@ -74,25 +76,9 @@ public class Player : MonoBehaviour{
 
         if (!isOnWall)
         {
+            DoWalk(direction);    
             if (controller.isGrounded)
             {
-                if (direction!= 0f)
-                {
-                    if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
-                    {
-                        _velocity.x = 0f;
-                    }
-                
-                
-                    _velocity.x += direction*groundAcceleration * Time.deltaTime;
-                    _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
-
-                    transform.rotation = (direction >0f) ? facingRight : facingLeft;
-                }
-                else
-                {
-                    _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
-                }
                 if (jumpPressedThisFrame)
                 {
                     _velocity.y = 2f*apexHeight/apexTime;
@@ -116,13 +102,13 @@ public class Player : MonoBehaviour{
         {
             if (down.IsPressed())
             {
-                _velocity.y -= 1f;
-            }
-
-            if (up.IsPressed())
+                _velocity.y = -4f;
+            }else if (up.IsPressed())
             {
-                _velocity.y += 1f;
-            }
+                _velocity.y = 4f;
+            }else{
+                _velocity.y = 0f;
+             }
             if (direction!= 0f)
             {
                 if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
@@ -154,9 +140,41 @@ public class Player : MonoBehaviour{
         }
     }
     
-
+    public virtual void Jump()
+    {
+        Debug.Log("not supposed to print");
+    }
     public virtual void Interact()
     {
         Debug.Log("not supposed to print");
+    }
+
+    private void DoWalk(float direction)
+    {
+        if (direction!= 0f)
+        {
+            if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
+            {
+                _velocity.x = 0f;
+                if (faceRight)
+                {
+                    faceRight = false;
+                }
+                else
+                {
+                    faceRight = true;
+                }
+            }
+                
+                
+            _velocity.x += direction*groundAcceleration * Time.deltaTime;
+            _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
+
+            transform.rotation = (direction >0f) ? facingRight : facingLeft;
+        }
+        else
+        {
+            _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
+        }
     }
 }
