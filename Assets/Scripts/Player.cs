@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -13,19 +13,15 @@ public class Player : MonoBehaviour{
     public float walkSpeed = 5f;
     public float runSpeed = 10f;
     public float groundAcceleration = 15f;
-    public float apexHeight = 4.5f;
+    public float apexHeight = 40f;
     public float apexTime = .5f;
     public float gravityMod = 1f;
     public bool isOnWall = false;
     public bool faceRight = true;
-    public float dashTime= .5f;
-    public float dashSpeed = 6f;
-    public float dashGrav = .125f;
-    public bool isDashing = false;
-    private Vector3 deltaPosition;
     Vector2 _velocity;
     Quaternion facingRight;
     Quaternion facingLeft;
+    public Transform spawnPoint;
     public float direction;
     private CharacterController controller;
     private InputAction up;
@@ -77,7 +73,6 @@ public class Player : MonoBehaviour{
         if(left.IsPressed()) direction -= 1f;
         bool jumpPressedThisFrame = up.WasPressedThisFrame();
         bool jumpHeld = up.IsPressed();
-        bool dashPressedThisFrame = dash.WasPerformedThisFrame();
 
 
         if (!isOnWall)
@@ -87,13 +82,12 @@ public class Player : MonoBehaviour{
             {
                 if (jumpPressedThisFrame)
                 {
-
                     _velocity.y = 2f*apexHeight/apexTime;
                 }
             }
             else
             {
-                if (!jumpHeld&&!isDashing)
+                if (!jumpHeld)
                 {
                     gravityMod = 2f;
                 }
@@ -109,13 +103,13 @@ public class Player : MonoBehaviour{
         {
             if (down.IsPressed())
             {
-                _velocity.y -= 1f;
-            }
-
-            if (up.IsPressed())
+                _velocity.y = -4f;
+            }else if (up.IsPressed())
             {
-                _velocity.y += 1f;
-            }
+                _velocity.y = 4f;
+            }else{
+                _velocity.y = 0f;
+             }
             if (direction!= 0f)
             {
                 if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
@@ -134,31 +128,22 @@ public class Player : MonoBehaviour{
                 _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
             }
         }
-
-        if (dashPressedThisFrame)
-        {
-            StartCoroutine(Dash());
-        }
+        
+       
         float deltaX = _velocity.x*Time.deltaTime;
         float deltaY = _velocity.y*Time.deltaTime;
-        deltaPosition = new Vector3(0f,deltaY,deltaX);
+        Vector3 deltaPosition = new Vector3(0f,deltaY,deltaX);
         transform.position += deltaPosition;
         controller.Move(deltaPosition);
-
         if (interact.IsPressed())
         {
             Interact();
         }
     }
-    private IEnumerator Dash()
+
+    public void SetSpawnPoint(Transform spawn)
     {
-        isDashing = true;
-        walkSpeed*=dashSpeed;
-        gravityMod = dashGrav;
-        yield return new WaitForSeconds(dashTime);
-        walkSpeed/=dashSpeed;
-        gravityMod = 1f;
-        isDashing = false;
+        spawnPoint = spawn;
     }
     public virtual void Jump()
     {
@@ -176,8 +161,16 @@ public class Player : MonoBehaviour{
             if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
             {
                 _velocity.x = 0f;
-                faceRight = !faceRight;
+                if (faceRight)
+                {
+                    faceRight = false;
+                }
+                else
+                {
+                    faceRight = true;
+                }
             }
+                
                 
             _velocity.x += direction*groundAcceleration * Time.deltaTime;
             _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
@@ -189,15 +182,4 @@ public class Player : MonoBehaviour{
             _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
         }
     }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Rigidbody box = hit.collider.attachedRigidbody;
-        if (!hit.collider.TryGetComponent(out Stone stone)) return;
-        if (hit.moveDirection.y < -0.3) return;
-        Vector3 pushDir = new Vector3(0, 0, hit.moveDirection.z);
-        box.linearVelocity +=pushDir;
-    }
-
-
 }
