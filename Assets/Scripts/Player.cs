@@ -13,12 +13,14 @@ public class Player : MonoBehaviour{
     public float walkSpeed = 5f;
     public float runSpeed = 10f;
     public float groundAcceleration = 15f;
-    public float apexHeight = 4.5f;
+    public float apexHeight = 40f;
     public float apexTime = .5f;
     public float gravityMod = 1f;
     public bool isOnWall = false;
     public bool faceRight = true;
     public float dashTime= .5f;
+    public float dashSpeed = 6f;
+    public float dashGrav = .125f;
     public bool isDashing = false;
     private Vector3 deltaPosition;
     Vector2 _velocity;
@@ -97,7 +99,7 @@ public class Player : MonoBehaviour{
                 }
             }
 
-            if (!controller.isGrounded);
+            if (!controller.isGrounded)
             {
                 float gravity = 2f*apexHeight/(apexTime*apexTime);
                 _velocity.y -= gravity*gravityMod*Time.deltaTime;
@@ -107,13 +109,13 @@ public class Player : MonoBehaviour{
         {
             if (down.IsPressed())
             {
-                _velocity.y = -4f;
-            }else if (up.IsPressed())
+                _velocity.y -= 1f;
+            }
+
+            if (up.IsPressed())
             {
-                _velocity.y = 4f;
-            }else{
-                _velocity.y = 0f;
-             }
+                _velocity.y += 1f;
+            }
             if (direction!= 0f)
             {
                 if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
@@ -151,10 +153,10 @@ public class Player : MonoBehaviour{
     private IEnumerator Dash()
     {
         isDashing = true;
-        walkSpeed*=3f;
-        gravityMod = 0.125f;
+        walkSpeed*=dashSpeed;
+        gravityMod = dashGrav;
         yield return new WaitForSeconds(dashTime);
-        walkSpeed/=3f;
+        walkSpeed/=dashSpeed;
         gravityMod = 1f;
         isDashing = false;
     }
@@ -174,14 +176,7 @@ public class Player : MonoBehaviour{
             if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
             {
                 _velocity.x = 0f;
-                if (faceRight)
-                {
-                    faceRight = false;
-                }
-                else
-                {
-                    faceRight = true;
-                }
+                faceRight = !faceRight;
             }
                 
             _velocity.x += direction*groundAcceleration * Time.deltaTime;
@@ -195,18 +190,10 @@ public class Player : MonoBehaviour{
         }
     }
 
-    private void DoDash(float direction){
-        Vector3 dirVector = new Vector3(0,0,direction);
-        RaycastHit hit;
-            if (Physics.Raycast(transform.position, dirVector,out hit, 5f))
-            if(hit.collider!= null){
-                
-            }
-    }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody box = hit.collider.attachedRigidbody;
-        //if (!hit.collider.TryGetComponent(out Stone stone)) return;
+        if (!hit.collider.TryGetComponent(out Stone stone)) return;
         if (hit.moveDirection.y < -0.3) return;
         Vector3 pushDir = new Vector3(0, 0, hit.moveDirection.z);
         box.linearVelocity +=pushDir;
