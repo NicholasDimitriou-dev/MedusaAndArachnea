@@ -35,6 +35,11 @@ public class Player : MonoBehaviour{
     private InputAction dash;
     private InputAction interact;
     private Controls controls;
+
+    private AudioSource audioSource;
+    private bool canPlay = true;
+    [SerializeField] private AudioClip jumpLandingSound;
+    
     
 
 
@@ -61,12 +66,29 @@ public class Player : MonoBehaviour{
             dash = controls.Player.MedusaDash;
             interact = controls.Player.MedusaInteract;
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
         controller = GetComponent<CharacterController>();
         facingRight = Quaternion.Euler(0f,0f,0f);
         facingLeft = Quaternion.Euler(0f,180f,0f);
+    }
+
+    private bool justJumped = false;
+    private void JumpLandingSound()
+    { 
+        if (justJumped)
+        {
+            justJumped = false;
+            audioSource.PlayOneShot(jumpLandingSound); 
+            audioSource.Pause();
+        }
+        else
+        {
+            return;
+        }
     }
 
     // Update is called once per frame
@@ -85,9 +107,10 @@ public class Player : MonoBehaviour{
             DoWalk(direction);    
             if (controller.isGrounded)
             {
+                JumpLandingSound();
                 if (jumpPressedThisFrame)
                 {
-
+                    justJumped = true;
                     _velocity.y = 2f*apexHeight/apexTime;
                 }
             }
@@ -181,12 +204,32 @@ public class Player : MonoBehaviour{
                 
             _velocity.x += direction*groundAcceleration * Time.deltaTime;
             _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
-
             transform.rotation = (direction >0f) ? facingRight : facingLeft;
+            ToggleWalkingSound(true);
         }
         else
         {
             _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
+            ToggleWalkingSound(false);
+        }
+    }
+
+
+    private void ToggleWalkingSound (bool on)
+    {
+        if (canPlay && on)
+        {
+            audioSource.Play();
+            canPlay = false;
+        }
+        else if (!canPlay && on)
+        {
+            return;
+        }
+        else if (!canPlay && !on)
+        {
+            canPlay = true;
+            audioSource.Pause();
         }
     }
 
