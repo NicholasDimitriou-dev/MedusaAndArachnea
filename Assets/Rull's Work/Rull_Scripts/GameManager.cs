@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public bool LevelCompleted { get; private set; } = false;
 
     [SerializeField] private int coinsToWin = 5;
     private int currentCoins = 0;
@@ -17,12 +18,15 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
     }
+    
 
     private void Start()
     {
         timeRemaining = timeLimit;
         UIManager.Instance.UpdateCoins(currentCoins, coinsToWin);
     }
+    
+    
 
     private void Update()
     {
@@ -31,10 +35,29 @@ public class GameManager : MonoBehaviour
         timeRemaining -= Time.deltaTime;
         UIManager.Instance.UpdateTimer(timeRemaining);
 
+        
         if (timeRemaining <= 0)
         {
-            LoseGame();
+            if (!LevelCompleted || currentCoins < coinsToWin)
+            {
+                LoseGame();
+            }
         }
+        /*
+        if (timeRemaining <= 0)
+        {
+            LoseGame(); // fix later
+        }
+        */
+    }
+    public bool HasAllCoins()
+    {
+        return currentCoins >= coinsToWin;
+    }
+    
+    public void SetLevelCompleted()
+    {
+        LevelCompleted = true;
     }
 
     public void AddCoins(int amount)
@@ -44,8 +67,14 @@ public class GameManager : MonoBehaviour
 
         if (currentCoins >= coinsToWin)
         {
+            Debug.Log("All coins collected!");
+        }
+        /*
+        if (currentCoins >= coinsToWin)
+        {
             WinGame();
         }
+        */
     }
 
     private void WinGame()
@@ -60,7 +89,7 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(nextIndex);
         }
-        else
+        else // Once the level is complete, need to go to the next level and also show the completed level and how many coins the player had collected
         {
             Debug.Log("Level completed!");
             SceneManager.LoadScene(1);
@@ -76,9 +105,9 @@ public class GameManager : MonoBehaviour
     */
 
     private void LoseGame()
-    {
+    { // Show the game is over and needs to restart the level again 
         gameEnded = true;
         Debug.Log("Time's up!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // fix this wea
     }
 }

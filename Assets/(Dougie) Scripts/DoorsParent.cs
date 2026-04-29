@@ -68,7 +68,26 @@ public class DoorsParent : MonoBehaviour
         //    StartCoroutine(TransitionToNextLevel());
         //}
 
+        // Added by Rull
+        if (!levelCompleted && medusaExit && arachneaExit)
+        {
+            if (GameManager.Instance.HasAllCoins())
+            {
+                levelCompleted = true;
+                GameManager.Instance.SetLevelCompleted();
+
+                StartCoroutine(TransitionToNextLevel());
+            }
+            else
+            {
+                Debug.Log("Need all coins before exiting!");
+            }
+        }
+        Debug.Log("Medusa: " + medusaExit + " | Arachnea: " + arachneaExit);
+        Debug.Log("Coins: " + GameManager.Instance.HasAllCoins());
+        
         // Added by Florencio
+        /* Edited my Rull
         if (!levelCompleted && medusaExit && arachneaExit)
         {
             levelCompleted = true; // Added by Florencio
@@ -81,6 +100,7 @@ public class DoorsParent : MonoBehaviour
             StartCoroutine(TransitionToNextLevel());
         }
         //
+        */
     }
 
     IEnumerator TransitionToNextLevel()
@@ -93,14 +113,31 @@ public class DoorsParent : MonoBehaviour
         yield return new WaitForSeconds(3);
         Debug.Log("Changing Level!");
         string currentSceneName = SceneManager.GetActiveScene().name;
+        
+        //Edited by Rull
+        if(currentSceneName == "LevelOneForanimation")
+        {
+            SceneManager.LoadScene("LevelTwoForAnimation");
+        }
+        else if(currentSceneName == "LevelTwoForAnimation")
+        {
+            SceneManager.LoadScene("LevelThreeForAnimation");
+        }
+        else if(currentSceneName == "LevelThreeForAnimation")
+        {
+            SceneManager.LoadScene("CreditsForAnimation");
+        }
+        /*
         if(currentSceneName == "LevelOne(Dupe)")
         {
             SceneManager.LoadScene("LevelTwo(Dupe)");
         }
+        
         else if(currentSceneName == "LevelTwo(Dupe)")
         {
             SceneManager.LoadScene("Credits");
         }
+        */
         //
     }
 }
