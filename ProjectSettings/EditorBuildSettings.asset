@@ -6,17 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Florencio/1_MainMenu/MainMenu.unity
-    guid: 485cc5816cc587d44b926a40412eff47
+    path: Assets/Rull's Work/Scene for animation and sp.unity
+    guid: f598288f57404cb4e85f3cc3ebf9ae6f
   - enabled: 1
-    path: Assets/Scenes/LevelOne.unity
-    guid: d5a231cbce11f7441bbb5e9563dcc876
+    path: Assets/Rull's Work/LevelOneForanimation.unity
+    guid: ece255769c4442a4b9e373d09283d45a
   - enabled: 1
-    path: Assets/Scenes/LevelTwo.unity
-    guid: 822b4426a670fa74a9cf661132888e5e
+    path: Assets/Rull's Work/LevelTwoForAnimation.unity
+    guid: e663426191179694185e72d389a6101d
   - enabled: 1
-    path: Assets/Florencio/4_Credits/Credits.unity
-    guid: c117f03d6bc6d7f47bcbe5428b7c638e
+    path: Assets/Rull's Work/LevelThreeForAnimation.unity
+    guid: 392d026dc1971f8418d5613fc64b8f74
+  - enabled: 1
+    path: Assets/Rull's Work/CreditsForAnimation.unity
+    guid: 5278a1813598d0d45a51a9c15dd12bf9
   - enabled: 1
     path: Assets/Scenes/Dougie - Enemy Testing.unity
     guid: 3610d4f3b9bfa1c47936a106b9d0478b
@@ -29,6 +32,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
     guid: 811bc8f833c8e38419bca85f9166c348
+  - enabled: 1
+    path: Assets/Florencio/1_MainMenu/MainMenu.unity
+    guid: 485cc5816cc587d44b926a40412eff47
+  - enabled: 1
+    path: Assets/Scenes/LevelOne.unity
+    guid: d5a231cbce11f7441bbb5e9563dcc876
+  - enabled: 1
+    path: Assets/Scenes/LevelTwo.unity
+    guid: 822b4426a670fa74a9cf661132888e5e
+  - enabled: 1
+    path: Assets/Florencio/4_Credits/Credits.unity
+    guid: c117f03d6bc6d7f47bcbe5428b7c638e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
