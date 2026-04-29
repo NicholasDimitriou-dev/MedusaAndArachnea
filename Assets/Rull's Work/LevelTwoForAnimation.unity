@@ -810,7 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f792abebed13514aacf2139bbde0fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  coinsToWin: 5
+  coinsToWin: 4
   timeLimit: 120
 --- !u!4 &257151431
 Transform:
