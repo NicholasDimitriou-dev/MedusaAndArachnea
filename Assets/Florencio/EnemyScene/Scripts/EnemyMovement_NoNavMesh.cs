@@ -32,7 +32,7 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
     private void Update()
     {
         //Debug.Log("WaitTimer: " + movementTimer); // Log the current value of the movement timer for debugging purposes
-
+        animator.SetBool("IsWalking",isMoving); // Update whether or not the enemy
         // IF enemy is at C and waiting for hte door
         if(waitingForOpenDoor)
         {
@@ -48,7 +48,7 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
                     justLeftC = true;
                 }
             }
-            animator.SetBool("IsWalking",isMoving);
+            
             return;
         }
 
