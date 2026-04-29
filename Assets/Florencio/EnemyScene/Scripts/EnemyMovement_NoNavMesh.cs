@@ -8,10 +8,13 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
     [SerializeField] private Transform arachneaSpawn; // Respawn position for arachnea
     [SerializeField] private Transform medusaSpawn; // Respawn position for arachnea
 
+    [SerializeField] private Animator animator; // Animator of Enemy, used to tell how the enemy should look when it's idle versus moving
 
     private float movementTimer = 0f; // Timer to track waiting time at each point
     
     private bool isMoving = false; // Flag to indicate whether the enemy is currently moving or waiting
+
+    private bool movingLeft = true; // Flag to indicate whether the enemy is moving left or right
     
     private Transform currentTarget; // Current target point the enemy is moving towards
 
@@ -45,7 +48,7 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
                     justLeftC = true;
                 }
             }
-
+            animator.SetBool("IsWalking",isMoving);
             return;
         }
 
@@ -79,6 +82,8 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
     {
         if (currentTarget == pointA)
         {
+            movingLeft = true;
+            animator.SetBool("MovingLeft",movingLeft);
             if (justLeftC) // After leaving C and going to A, go to B
             {
                 currentTarget = pointB;
@@ -95,6 +100,8 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
         }
         else if (currentTarget == pointB)
         {
+            movingLeft = false;
+            animator.SetBool("MovingLeft",movingLeft);
             currentTarget = pointA;
         }
         else if (currentTarget == pointC)
