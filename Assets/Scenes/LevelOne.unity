@@ -233,6 +233,7 @@ MonoBehaviour:
   pointC: {fileID: 2009007750}
   arachneaSpawn: {fileID: 1725600952}
   medusaSpawn: {fileID: 664434416}
+  animator: {fileID: 1208434526}
 --- !u!1001 &406479915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1992,6 +1993,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1208434526 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3006041328511422834, guid: 46c80d2cbeea8194094fd1d174084513, type: 3}
+  m_PrefabInstance: {fileID: 1403263560}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1371005361
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,6 +2200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3183114138435167208, guid: 46c80d2cbeea8194094fd1d174084513, type: 3}
+    - {fileID: 264430634055680422, guid: 46c80d2cbeea8194094fd1d174084513, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
