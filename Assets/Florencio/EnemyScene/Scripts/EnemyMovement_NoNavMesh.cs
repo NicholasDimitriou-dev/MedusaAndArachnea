@@ -11,12 +11,13 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
     [SerializeField] private Sprite[] walkFrames;
     [SerializeField] private float animationSpeed = 0.2f;
 
-    private int currentFrame = 0;
-    private float animationTimer = 0f;
+    [SerializeField] private Animator animator; // Animator of Enemy, used to tell how the enemy should look when it's idle versus moving
 
     private float movementTimer = 0f; // Timer to track waiting time at each point
     
     private bool isMoving = false; // Flag to indicate whether the enemy is currently moving or waiting
+
+    private bool movingLeft = true; // Flag to indicate whether the enemy is moving left or right
     
     private Transform currentTarget; // Current target point the enemy is moving towards
 
@@ -38,13 +39,12 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
     private void Update()
     {
         //Debug.Log("WaitTimer: " + movementTimer); // Log the current value of the movement timer for debugging purposes
-
+        animator.SetBool("IsWalking",isMoving); // Update whether or not the enemy
         // IF enemy is at C and waiting for hte door
         if(waitingForOpenDoor)
         {
             movementTimer += Time.deltaTime;
             
-            HandleAnimation();
             if (movementTimer >= 3f)
             {
                 if (usePointC) // Leaving point C, going to A
@@ -85,7 +85,6 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
             }
         }
         
-        HandleAnimation();
         
     }
     
@@ -103,6 +102,8 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
     {
         if (currentTarget == pointA)
         {
+            movingLeft = true;
+            animator.SetBool("MovingLeft",movingLeft);
             if (justLeftC) // After leaving C and going to A, go to B
             {
                 currentTarget = pointB;
@@ -119,6 +120,8 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
         }
         else if (currentTarget == pointB)
         {
+            movingLeft = false;
+            animator.SetBool("MovingLeft",movingLeft);
             currentTarget = pointA;
         }
         else if (currentTarget == pointC)
@@ -176,37 +179,5 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
             }
         }
     }
-    private void HandleAnimation()
-    {
-        if (walkFrames == null || walkFrames.Length == 0 || spriteRenderer == null)
-            return;
-
-        if (!isMoving)
-        {
-            spriteRenderer.sprite = walkFrames[0]; // idle frame
-            return;
-        }
-
-        animationTimer += Time.deltaTime;
-        if (animationTimer >= animationSpeed)
-        {
-            animationTimer = 0f;
-            currentFrame = (currentFrame + 1) % walkFrames.Length;
-            spriteRenderer.sprite = walkFrames[currentFrame];
-        }
-
-        if (currentTarget != null)
-        {
-            Vector3 direction = (currentTarget.position - transform.position);
-
-            if (direction.z > 0.01f)
-            {
-                spriteRenderer.flipX = true; 
-            }
-            else if (direction.z < -0.01f)
-            {
-                spriteRenderer.flipX = false; 
-            }
-        }
-    }
+    
 }
