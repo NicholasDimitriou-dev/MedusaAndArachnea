@@ -42,7 +42,7 @@ public class Player : MonoBehaviour{
     private bool canPlay = true;
     [SerializeField] private AudioClip jumpLandingSound;
     
-    [SerializeField] private Animator animator;
+    public Animator animator;
     [SerializeField] private AudioSource beamAudioSource;
     
 
