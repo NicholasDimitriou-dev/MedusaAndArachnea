@@ -1828,6 +1828,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2773079786882875403, guid: 0ff7a7f1e9c756546ae7935251d7dcc6, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773079786882875403, guid: 0ff7a7f1e9c756546ae7935251d7dcc6, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773079786882875403, guid: 0ff7a7f1e9c756546ae7935251d7dcc6, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 12d98f4d7ab891b4aafabe6f79230c81, type: 3}
+    - target: {fileID: 2773079786882875403, guid: 0ff7a7f1e9c756546ae7935251d7dcc6, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5422811603262745800, guid: 0ff7a7f1e9c756546ae7935251d7dcc6, type: 3}
       propertyPath: Loop
       value: 1
@@ -1927,7 +1943,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 370287722678347967, guid: 422241b94504fa64eac5d23f35e625fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42126065
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 370287722678347967, guid: 422241b94504fa64eac5d23f35e625fb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1963,6 +1979,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 370287722678347967, guid: 422241b94504fa64eac5d23f35e625fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815269213725794030, guid: 422241b94504fa64eac5d23f35e625fb, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815269213725794030, guid: 422241b94504fa64eac5d23f35e625fb, type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4050092540633653254, guid: 422241b94504fa64eac5d23f35e625fb, type: 3}
@@ -2359,6 +2383,14 @@ PrefabInstance:
       propertyPath: pulled
       value: 
       objectReference: {fileID: 407818301}
+    - target: {fileID: 7513483331174183060, guid: d5275e41d8a87064888aa7551bec7bfa, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513483331174183060, guid: d5275e41d8a87064888aa7551bec7bfa, type: 3}
+      propertyPath: m_Volume
+      value: 0.387
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7480949371126226828}
   - component: {fileID: 3183114138435167208}
   - component: {fileID: -7174700562751908677}
+  - component: {fileID: 6735264331630707410}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -113,9 +114,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1.349217
+  m_Height: 2.0106087
   m_Direction: 1
-  m_Center: {x: 0, y: -0.32539147, z: 0}
+  m_Center: {x: 0, y: 0.005304292, z: 0}
 --- !u!114 &3183114138435167208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed1b55c83a3b444e99d453060aff639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  enemyPath: {fileID: 0}
 --- !u!54 &-7174700562751908677
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,4 +155,22 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 18
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!114 &6735264331630707410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3190895262175355126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807498c82144b834ebe588df462bc0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement_NoNavMesh
+  speed: 5
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
+  pointC: {fileID: 0}
+  arachneaSpawn: {fileID: 0}
+  medusaSpawn: {fileID: 0}
