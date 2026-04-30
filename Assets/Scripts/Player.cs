@@ -24,10 +24,10 @@ public class Player : MonoBehaviour{
     public bool isDashing = false;
     private Vector3 deltaPosition;
     Vector2 _velocity;
-    Quaternion facingRight;
-    Quaternion facingLeft;
+    Quaternion facingRight = Quaternion.Euler(0f,0f,0f);
+    Quaternion facingLeft = Quaternion.Euler(0f,180f,0f);
     public float direction;
-    private CharacterController controller;
+    [SerializeField] private CharacterController controller;
     private InputAction up;
     private InputAction down;
     private InputAction left;
@@ -35,8 +35,22 @@ public class Player : MonoBehaviour{
     private InputAction dash;
     private InputAction interact;
     private Controls controls;
+
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource jumpAudioSource;
+    [SerializeField] private AudioSource dashAudioSource;
+    private bool canPlay = true;
+    [SerializeField] private AudioClip jumpLandingSound;
+    
+    [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource beamAudioSource;
     
 
+
+    public InputAction getInteract()
+    {
+        return interact;
+    }
 
     public Character character;
     void Awake()
@@ -62,11 +76,20 @@ public class Player : MonoBehaviour{
             interact = controls.Player.MedusaInteract;
         }
     }
-    void Start()
-    {
-        controller = GetComponent<CharacterController>();
-        facingRight = Quaternion.Euler(0f,0f,0f);
-        facingLeft = Quaternion.Euler(0f,180f,0f);
+
+    private bool justJumped = false;
+    private void JumpLandingSound()
+    { 
+        if (justJumped)
+        {
+            justJumped = false;
+            jumpAudioSource.Play(); 
+            // jumpAudioSource.Pause();
+        }
+        else
+        {
+            return;
+        }
     }
 
     // Update is called once per frame
@@ -79,15 +102,24 @@ public class Player : MonoBehaviour{
         bool jumpHeld = up.IsPressed();
         bool dashPressedThisFrame = dash.WasPerformedThisFrame();
 
-
+        if (left.WasPressedThisFrame())
+        {
+            faceRight = false;
+        }
+        else if (right.WasPressedThisFrame())
+        {
+            faceRight = true;
+        }
+        
         if (!isOnWall)
         {
             DoWalk(direction);    
             if (controller.isGrounded)
             {
+                JumpLandingSound();
                 if (jumpPressedThisFrame)
                 {
-
+                    justJumped = true;
                     _velocity.y = 2f*apexHeight/apexTime;
                 }
             }
@@ -128,10 +160,12 @@ public class Player : MonoBehaviour{
                 _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
 
                 transform.rotation = (direction >0f) ? facingRight : facingLeft;
+                
             }
             else
             {
                 _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
+                
             }
         }
 
@@ -148,12 +182,63 @@ public class Player : MonoBehaviour{
         if (interact.IsPressed())
         {
             Interact();
+            if (this.gameObject.CompareTag("Medusa"))
+            {
+                ToggleBeamingSound(true);
+            }
+        } else if (interact.WasReleasedThisFrame())
+        {
+            if (this.gameObject.CompareTag("Medusa"))
+            {
+                ToggleBeamingSound(false);
+            }
         }
     }
+    
+    
+    
+    private bool canPlayBeam = true;
+    private void ToggleBeamingSound (bool on)
+    {
+        if (canPlayBeam && on)
+        {
+            beamAudioSource.Play();
+            canPlayBeam = false;
+        }
+        else if (!canPlayBeam && on)
+        {
+            return;
+        }
+        else if (!canPlayBeam && !on)
+        {
+            canPlayBeam = true;
+            IEnumerator pause = PauseBeamSound(beamAudioSource, 0.2f);
+            StartCoroutine(pause);
+        }
+    }
+
+    
+    
+    private static IEnumerator PauseBeamSound(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+        audioSource.Pause();
+        audioSource.volume = startVolume;
+    }
+    
+    
+    
     private IEnumerator Dash()
     {
         isDashing = true;
         walkSpeed*=dashSpeed;
+        dashAudioSource.Play();
         gravityMod = dashGrav;
         yield return new WaitForSeconds(dashTime);
         walkSpeed/=dashSpeed;
@@ -176,18 +261,56 @@ public class Player : MonoBehaviour{
             if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
             {
                 _velocity.x = 0f;
-                faceRight = !faceRight;
+                // faceRight = !faceRight;
             }
                 
             _velocity.x += direction*groundAcceleration * Time.deltaTime;
             _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
-
             transform.rotation = (direction >0f) ? facingRight : facingLeft;
+            ToggleWalkingSound(true);
+            animator.SetBool("IsWalking",true);
         }
         else
         {
             _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
+            ToggleWalkingSound(false);
+            animator.SetBool("IsWalking",false);
         }
+    }
+
+
+    private void ToggleWalkingSound (bool on)
+    {
+        if (canPlay && on)
+        {
+            audioSource.Play();
+            canPlay = false;
+        }
+        else if (!canPlay && on)
+        {
+            return;
+        }
+        else if (!canPlay && !on)
+        {
+            canPlay = true;
+            IEnumerator pause = PauseSound(audioSource, 0.2f);
+            StartCoroutine(pause);
+        }
+    }
+
+    
+    
+    private static IEnumerator PauseSound(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

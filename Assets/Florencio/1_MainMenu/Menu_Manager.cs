@@ -55,7 +55,8 @@ public class Menu_Manager : MonoBehaviour
         }
         if(startButton.gameObject.activeInHierarchy && HoveringOnButton(startButton, mousePos))
         {
-            SceneManager.LoadScene("LevelOne(Dupe)");
+            SceneManager.LoadScene("LevelOneForanimation");
+            //SceneManager.LoadScene("LevelOne(Dupe)");
             return;
         }
         else if(selectLevelButton.gameObject.activeInHierarchy && HoveringOnButton(selectLevelButton, mousePos))
@@ -66,7 +67,8 @@ public class Menu_Manager : MonoBehaviour
         }
         else if(levelSelectMenu.activeInHierarchy && HoveringOnButton(levelOneButton, mousePos))
         {
-            SceneManager.LoadScene("LevelOne(Dupe)");
+            SceneManager.LoadScene("LevelOneForanimation");
+            //SceneManager.LoadScene("LevelOne(Dupe)");
             return;
         }
         else if(levelSelectMenu.activeInHierarchy && HoveringOnButton(levelTwoButton, mousePos))

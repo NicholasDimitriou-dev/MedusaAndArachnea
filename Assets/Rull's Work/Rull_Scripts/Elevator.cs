@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 public class Elevator : MonoBehaviour
@@ -10,6 +11,12 @@ public class Elevator : MonoBehaviour
     private Vector3 targetPosition;
 
     private bool isMoving = false;
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void Start()
     {
