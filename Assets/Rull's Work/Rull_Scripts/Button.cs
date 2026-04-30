@@ -20,9 +20,13 @@ public class Button : MonoBehaviour
     {
         if (other.TryGetComponent(out Player player))
         {
-            audioSource.PlayOneShot(buttonOn);
+            if (objectsOnButton == 0)
+            {
+                audioSource.PlayOneShot(buttonOn);
+                door.SetOpen(true);
+            }
             objectsOnButton++;
-            door.SetOpen(true);
+            // door.SetOpen(true);
         } else if (other.TryGetComponent(out Stone stone))
         {
             audioSource.PlayOneShot(buttonOn);
