@@ -5,6 +5,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private Vector3 openOffset;
     [SerializeField] private float speed = 2f;
+    private AudioSource audioSource;
 
 
     // Added 
@@ -18,6 +19,11 @@ public class Door : MonoBehaviour
     {
         closedPosition = transform.position;
         openPosition = closedPosition + openOffset;
+    }
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -34,6 +40,7 @@ public class Door : MonoBehaviour
 
     public void SetOpen(bool open)
     {
+        audioSource.Play();
         isOpen = open;
 
         //Added

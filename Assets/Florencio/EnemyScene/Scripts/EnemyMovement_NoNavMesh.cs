@@ -24,11 +24,15 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
     private bool usePointC = false; // Represents the door's state, flase = not open
     private bool waitingForOpenDoor = false; // Enemy remains stuck at point C when door is closed
     private bool justLeftC = false; // Prevents enemy from going back to C after just leaving it
+
+
+    private AudioSource audioSource;
     
     private void Awake()
     {
         transform.position = pointA.position; // Start at point A
         currentTarget = pointB; // Set initial target to point B
+        audioSource = GetComponent<AudioSource>();
     }
     
     private void Update()
@@ -83,6 +87,15 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
         
         HandleAnimation();
         
+    }
+    
+    
+    // Testing freeze on this script
+    public void TurnToStone(Transform stonePrefab)
+    {
+        var obj = Instantiate(stonePrefab);
+        obj.transform.position = transform.position;
+        Destroy(gameObject);
     }
 
 
@@ -139,6 +152,7 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
             {
                 cc.enabled = false;
             }
+            audioSource.Play();
             other.transform.position = arachneaSpawn.position;
             if(cc!= null)
             {
@@ -154,6 +168,7 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
             {
                 cc.enabled = false;
             }
+            audioSource.Play();
             other.transform.position = medusaSpawn.position;
             if (cc != null)
             {
