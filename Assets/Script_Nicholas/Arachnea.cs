@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Arachnea : Player
 {
+    //Animator animatorUsed;
+    public void Start()
+    {
+        //animatorUsed = GetComponent<Player>().GetComponent<Animator>();
+    }
     public override void Interact()
     {
         if (isOnWall)
@@ -17,6 +22,7 @@ public class Arachnea : Player
             {
                 gravityMod = 0f;
                 isOnWall = true;
+                
             }
             else
             {
@@ -24,6 +30,7 @@ public class Arachnea : Player
                 isOnWall = false;
             }
         }
+        //animatorUsed.SetBool("IsClimbing",isOnWall);
     }
 
     private bool wallClimb()

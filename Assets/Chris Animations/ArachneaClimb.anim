@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MedusaWalk
+  m_Name: ArachneaClimb
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,17 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 1056990955, guid: db7f5676c171a0f498011b581fffc6e9, type: 3}
+      value: {fileID: 1824424168, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
+    - time: 0.1
+      value: {fileID: -1989796350, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
+    - time: 0.2
+      value: {fileID: -274299334, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
+    - time: 0.26666668
+      value: {fileID: 826853987, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
+    - time: 0.33333334
+      value: {fileID: -1045403058, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
+    - time: 0.4
+      value: {fileID: -857947234, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,13 +54,18 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 1056990955, guid: db7f5676c171a0f498011b581fffc6e9, type: 3}
+    - {fileID: 1824424168, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
+    - {fileID: -1989796350, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
+    - {fileID: -274299334, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
+    - {fileID: 826853987, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
+    - {fileID: -1045403058, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
+    - {fileID: -857947234, guid: 8d1f3e4cfe4aeb84f9ac19f23c83c1ff, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 0.4166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
