@@ -7,7 +7,12 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
     [SerializeField] private Transform pointC; // Position when door is open
     [SerializeField] private Transform arachneaSpawn; // Respawn position for arachnea
     [SerializeField] private Transform medusaSpawn; // Respawn position for arachnea
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite[] walkFrames;
+    [SerializeField] private float animationSpeed = 0.2f;
 
+    private int currentFrame = 0;
+    private float animationTimer = 0f;
 
     private float movementTimer = 0f; // Timer to track waiting time at each point
     
@@ -38,6 +43,8 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
         if(waitingForOpenDoor)
         {
             movementTimer += Time.deltaTime;
+            
+            HandleAnimation();
             if (movementTimer >= 3f)
             {
                 if (usePointC) // Leaving point C, going to A
@@ -49,8 +56,9 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
                     justLeftC = true;
                 }
             }
-
+            
             return;
+            
         }
 
         if (!isMoving) // If the enemy is not currently moving, increment the movement timer
@@ -76,6 +84,9 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
                 ChooseTarget();
             }
         }
+        
+        HandleAnimation();
+        
     }
     
     
@@ -162,6 +173,39 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
             if (cc != null)
             {
                 cc.enabled = true;
+            }
+        }
+    }
+    private void HandleAnimation()
+    {
+        if (walkFrames == null || walkFrames.Length == 0 || spriteRenderer == null)
+            return;
+
+        if (!isMoving)
+        {
+            spriteRenderer.sprite = walkFrames[0]; // idle frame
+            return;
+        }
+
+        animationTimer += Time.deltaTime;
+        if (animationTimer >= animationSpeed)
+        {
+            animationTimer = 0f;
+            currentFrame = (currentFrame + 1) % walkFrames.Length;
+            spriteRenderer.sprite = walkFrames[currentFrame];
+        }
+
+        if (currentTarget != null)
+        {
+            Vector3 direction = (currentTarget.position - transform.position);
+
+            if (direction.z > 0.01f)
+            {
+                spriteRenderer.flipX = true; 
+            }
+            else if (direction.z < -0.01f)
+            {
+                spriteRenderer.flipX = false; 
             }
         }
     }
