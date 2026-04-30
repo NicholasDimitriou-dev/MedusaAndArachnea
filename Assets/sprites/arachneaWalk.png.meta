@@ -102,10 +102,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 53
+        width: 54
         height: 50
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -122,12 +122,12 @@ TextureImporter:
       name: arachneaWalk_1
       rect:
         serializedVersion: 2
-        x: 53
+        x: 54
         y: 0
         width: 53
         height: 50
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -144,12 +144,12 @@ TextureImporter:
       name: arachneaWalk_2
       rect:
         serializedVersion: 2
-        x: 106
+        x: 107
         y: 0
-        width: 53
+        width: 47
         height: 50
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -166,12 +166,12 @@ TextureImporter:
       name: arachneaWalk_3
       rect:
         serializedVersion: 2
-        x: 159
+        x: 154
         y: 0
-        width: 53
+        width: 40
         height: 50
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -188,12 +188,12 @@ TextureImporter:
       name: arachneaWalk_4
       rect:
         serializedVersion: 2
-        x: 212
+        x: 194
         y: 0
-        width: 53
+        width: 41
         height: 50
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -210,12 +210,12 @@ TextureImporter:
       name: arachneaWalk_5
       rect:
         serializedVersion: 2
-        x: 265
+        x: 235
         y: 0
-        width: 53
+        width: 52
         height: 50
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -232,12 +232,12 @@ TextureImporter:
       name: arachneaWalk_6
       rect:
         serializedVersion: 2
-        x: 318
+        x: 287
         y: 0
-        width: 53
+        width: 60
         height: 50
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -254,12 +254,12 @@ TextureImporter:
       name: arachneaWalk_7
       rect:
         serializedVersion: 2
-        x: 371
+        x: 347
         y: 0
-        width: 53
+        width: 61
         height: 50
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -268,6 +268,28 @@ TextureImporter:
       bones: []
       spriteID: 02d8a1ab9a1d5454e9a8fc5fdd580726
       internalID: 1527694898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arachneaWalk_8
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 0
+        width: 55
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04c3f99b10612a140a4d7f10c61a860c
+      internalID: -337853595
       vertices: []
       indices: 
       edges: []
@@ -296,6 +318,7 @@ TextureImporter:
       arachneaWalk_5: -2124876422
       arachneaWalk_6: -656112309
       arachneaWalk_7: 1527694898
+      arachneaWalk_8: -337853595
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

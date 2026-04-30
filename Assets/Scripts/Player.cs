@@ -24,10 +24,10 @@ public class Player : MonoBehaviour{
     public bool isDashing = false;
     private Vector3 deltaPosition;
     Vector2 _velocity;
-    Quaternion facingRight;
-    Quaternion facingLeft;
+    Quaternion facingRight = Quaternion.Euler(0f,0f,0f);
+    Quaternion facingLeft = Quaternion.Euler(0f,180f,0f);
     public float direction;
-    private CharacterController controller;
+    [SerializeField] private CharacterController controller;
     private InputAction up;
     private InputAction down;
     private InputAction left;
@@ -41,6 +41,8 @@ public class Player : MonoBehaviour{
     [SerializeField] private AudioSource dashAudioSource;
     private bool canPlay = true;
     [SerializeField] private AudioClip jumpLandingSound;
+    
+    [SerializeField] private Animator animator;
     [SerializeField] private AudioSource beamAudioSource;
     
 
@@ -73,12 +75,6 @@ public class Player : MonoBehaviour{
             dash = controls.Player.MedusaDash;
             interact = controls.Player.MedusaInteract;
         }
-    }
-    void Start()
-    {
-        controller = GetComponent<CharacterController>();
-        facingRight = Quaternion.Euler(0f,0f,0f);
-        facingLeft = Quaternion.Euler(0f,180f,0f);
     }
 
     private bool justJumped = false;
@@ -164,10 +160,12 @@ public class Player : MonoBehaviour{
                 _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
 
                 transform.rotation = (direction >0f) ? facingRight : facingLeft;
+                
             }
             else
             {
                 _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
+                
             }
         }
 
@@ -270,11 +268,13 @@ public class Player : MonoBehaviour{
             _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
             transform.rotation = (direction >0f) ? facingRight : facingLeft;
             ToggleWalkingSound(true);
+            animator.SetBool("IsWalking",true);
         }
         else
         {
             _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
             ToggleWalkingSound(false);
+            animator.SetBool("IsWalking",false);
         }
     }
 

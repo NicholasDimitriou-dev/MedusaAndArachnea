@@ -102,7 +102,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 8
-        width: 153
+        width: 157
         height: 150
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -122,10 +122,10 @@ TextureImporter:
       name: medusa Walk_1
       rect:
         serializedVersion: 2
-        x: 153
+        x: 157
         y: 8
-        width: 153
-        height: 150
+        width: 149
+        height: 157
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
