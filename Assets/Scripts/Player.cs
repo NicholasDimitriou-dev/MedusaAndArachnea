@@ -36,12 +36,21 @@ public class Player : MonoBehaviour{
     private InputAction interact;
     private Controls controls;
 
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource jumpAudioSource;
+    [SerializeField] private AudioSource dashAudioSource;
     private bool canPlay = true;
     [SerializeField] private AudioClip jumpLandingSound;
     
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource beamAudioSource;
+    
 
+
+    public InputAction getInteract()
+    {
+        return interact;
+    }
 
     public Character character;
     void Awake()
@@ -66,8 +75,6 @@ public class Player : MonoBehaviour{
             dash = controls.Player.MedusaDash;
             interact = controls.Player.MedusaInteract;
         }
-
-        audioSource = GetComponent<AudioSource>();
     }
 
     private bool justJumped = false;
@@ -76,8 +83,8 @@ public class Player : MonoBehaviour{
         if (justJumped)
         {
             justJumped = false;
-            audioSource.PlayOneShot(jumpLandingSound); 
-            audioSource.Pause();
+            jumpAudioSource.Play(); 
+            // jumpAudioSource.Pause();
         }
         else
         {
@@ -95,7 +102,15 @@ public class Player : MonoBehaviour{
         bool jumpHeld = up.IsPressed();
         bool dashPressedThisFrame = dash.WasPerformedThisFrame();
 
-
+        if (left.WasPressedThisFrame())
+        {
+            faceRight = false;
+        }
+        else if (right.WasPressedThisFrame())
+        {
+            faceRight = true;
+        }
+        
         if (!isOnWall)
         {
             DoWalk(direction);    
@@ -167,12 +182,63 @@ public class Player : MonoBehaviour{
         if (interact.IsPressed())
         {
             Interact();
+            if (this.gameObject.CompareTag("Medusa"))
+            {
+                ToggleBeamingSound(true);
+            }
+        } else if (interact.WasReleasedThisFrame())
+        {
+            if (this.gameObject.CompareTag("Medusa"))
+            {
+                ToggleBeamingSound(false);
+            }
         }
     }
+    
+    
+    
+    private bool canPlayBeam = true;
+    private void ToggleBeamingSound (bool on)
+    {
+        if (canPlayBeam && on)
+        {
+            beamAudioSource.Play();
+            canPlayBeam = false;
+        }
+        else if (!canPlayBeam && on)
+        {
+            return;
+        }
+        else if (!canPlayBeam && !on)
+        {
+            canPlayBeam = true;
+            IEnumerator pause = PauseBeamSound(beamAudioSource, 0.2f);
+            StartCoroutine(pause);
+        }
+    }
+
+    
+    
+    private static IEnumerator PauseBeamSound(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+        audioSource.Pause();
+        audioSource.volume = startVolume;
+    }
+    
+    
+    
     private IEnumerator Dash()
     {
         isDashing = true;
         walkSpeed*=dashSpeed;
+        dashAudioSource.Play();
         gravityMod = dashGrav;
         yield return new WaitForSeconds(dashTime);
         walkSpeed/=dashSpeed;
@@ -195,7 +261,7 @@ public class Player : MonoBehaviour{
             if (Mathf.Sign(direction) != Mathf.Sign(_velocity.x))
             {
                 _velocity.x = 0f;
-                faceRight = !faceRight;
+                // faceRight = !faceRight;
             }
                 
             _velocity.x += direction*groundAcceleration * Time.deltaTime;
@@ -227,8 +293,24 @@ public class Player : MonoBehaviour{
         else if (!canPlay && !on)
         {
             canPlay = true;
-            audioSource.Pause();
+            IEnumerator pause = PauseSound(audioSource, 0.2f);
+            StartCoroutine(pause);
         }
+    }
+
+    
+    
+    private static IEnumerator PauseSound(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

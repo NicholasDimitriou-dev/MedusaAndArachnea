@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2735576973592204126}
   - component: {fileID: 943102860954809919}
   - component: {fileID: 8556638578474078411}
+  - component: {fileID: 2815269213725794030}
+  - component: {fileID: 3646979088009986394}
   m_Layer: 3
   m_Name: Arachnea
   m_TagString: Arachnea

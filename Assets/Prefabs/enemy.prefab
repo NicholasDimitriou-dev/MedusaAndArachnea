@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2626758760680911207}
   - component: {fileID: 7480949371126226828}
   - component: {fileID: -7174700562751908677}
-  - component: {fileID: 264430634055680422}
+  - component: {fileID: 6735264331630707410}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -55,7 +55,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1.349217
+  m_Height: 2.0106087
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-7174700562751908677
