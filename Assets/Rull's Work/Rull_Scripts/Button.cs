@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using UnityEngine.AI;
+
 public class Button : MonoBehaviour
 {
     [SerializeField] private Door door;
@@ -41,7 +41,7 @@ public class Button : MonoBehaviour
 
                 if (spriteRenderer != null && greenSprite != null)
                 {
-                    spriteRenderer.sprite = greenSprite; 
+                    spriteRenderer.sprite = greenSprite;
                 }
             }
         }
@@ -62,7 +62,7 @@ public class Button : MonoBehaviour
 
                 if (spriteRenderer != null && redSprite != null)
                 {
-                    spriteRenderer.sprite = redSprite; 
+                    spriteRenderer.sprite = redSprite;
                 }
             }
         }
