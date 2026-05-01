@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2626758760680911207}
   - component: {fileID: 7480949371126226828}
   - component: {fileID: -7174700562751908677}
-  - component: {fileID: 6735264331630707410}
+  - component: {fileID: 264430634055680422}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 3190895262175355126}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.034156}
+  m_LocalScale: {x: 1, y: 0.53122926, z: 0.53211}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2967726065434910912}
@@ -103,6 +103,9 @@ MonoBehaviour:
   pointC: {fileID: 0}
   arachneaSpawn: {fileID: 0}
   medusaSpawn: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  walkFrames: []
+  animationSpeed: 0.2
   animator: {fileID: 3006041328511422834}
 --- !u!1 &7470204540153871741
 GameObject:
@@ -132,7 +135,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0.146}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 4.5003257, y: 1.98275, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2626758760680911207}
