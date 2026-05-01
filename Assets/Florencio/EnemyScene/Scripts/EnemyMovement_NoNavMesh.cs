@@ -7,11 +7,17 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
     [SerializeField] private Transform pointC; // Position when door is open
     [SerializeField] private Transform arachneaSpawn; // Respawn position for arachnea
     [SerializeField] private Transform medusaSpawn; // Respawn position for arachnea
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite[] walkFrames;
+    [SerializeField] private float animationSpeed = 0.2f;
 
+    [SerializeField] private Animator animator; // Animator of Enemy, used to tell how the enemy should look when it's idle versus moving
 
     private float movementTimer = 0f; // Timer to track waiting time at each point
     
     private bool isMoving = false; // Flag to indicate whether the enemy is currently moving or waiting
+
+    private bool movingLeft = true; // Flag to indicate whether the enemy is moving left or right
     
     private Transform currentTarget; // Current target point the enemy is moving towards
 
@@ -19,21 +25,26 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
     private bool usePointC = false; // Represents the door's state, flase = not open
     private bool waitingForOpenDoor = false; // Enemy remains stuck at point C when door is closed
     private bool justLeftC = false; // Prevents enemy from going back to C after just leaving it
+
+
+    private AudioSource audioSource;
     
     private void Awake()
     {
         transform.position = pointA.position; // Start at point A
         currentTarget = pointB; // Set initial target to point B
+        audioSource = GetComponent<AudioSource>();
     }
     
     private void Update()
     {
         //Debug.Log("WaitTimer: " + movementTimer); // Log the current value of the movement timer for debugging purposes
-
+        animator.SetBool("IsWalking",isMoving); // Update whether or not the enemy
         // IF enemy is at C and waiting for hte door
         if(waitingForOpenDoor)
         {
             movementTimer += Time.deltaTime;
+            
             if (movementTimer >= 3f)
             {
                 if (usePointC) // Leaving point C, going to A
@@ -45,8 +56,9 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
                     justLeftC = true;
                 }
             }
-
+            
             return;
+            
         }
 
         if (!isMoving) // If the enemy is not currently moving, increment the movement timer
@@ -72,6 +84,17 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
                 ChooseTarget();
             }
         }
+        
+        
+    }
+    
+    
+    // Testing freeze on this script
+    public void TurnToStone(Transform stonePrefab)
+    {
+        var obj = Instantiate(stonePrefab);
+        obj.transform.position = transform.position;
+        Destroy(gameObject);
     }
 
 
@@ -79,6 +102,8 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
     {
         if (currentTarget == pointA)
         {
+            movingLeft = true;
+            animator.SetBool("MovingLeft",movingLeft);
             if (justLeftC) // After leaving C and going to A, go to B
             {
                 currentTarget = pointB;
@@ -95,6 +120,8 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
         }
         else if (currentTarget == pointB)
         {
+            movingLeft = false;
+            animator.SetBool("MovingLeft",movingLeft);
             currentTarget = pointA;
         }
         else if (currentTarget == pointC)
@@ -128,6 +155,7 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
             {
                 cc.enabled = false;
             }
+            audioSource.Play();
             other.transform.position = arachneaSpawn.position;
             if(cc!= null)
             {
@@ -143,6 +171,7 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
             {
                 cc.enabled = false;
             }
+            audioSource.Play();
             other.transform.position = medusaSpawn.position;
             if (cc != null)
             {
@@ -150,4 +179,5 @@ public class EnemyMovement_NoNavMesh : MonoBehaviour
             }
         }
     }
+    
 }

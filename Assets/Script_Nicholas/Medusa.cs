@@ -1,11 +1,25 @@
+using System;
 using UnityEngine;
+using System.Collections;
 
 public class Medusa : Player
 {
     [SerializeField] private Transform enemyStonePrefab;
+    [SerializeField] private AudioSource stoneAudioSource;
+
+
+    // private void Update()
+    // {
+    //     if (this.gameObject.GetComponent<Player>().getInteract().WasReleasedThisFrame())
+    //     {
+    //         ToggleDashingSound(false);
+    //     }
+    // }
+
 
     public override void Interact()
     {
+        animator.SetTrigger("FiredBlast");
         Vector3 dir;
         float interactDistance = 5f;
         if (faceRight)
@@ -20,9 +34,10 @@ public class Medusa : Player
         if (Physics.Raycast(transform.position, dir, out RaycastHit raycastHit, interactDistance))
         {
             
-            if (raycastHit.transform.TryGetComponent(out Enemy enemy))
+            if (raycastHit.transform.TryGetComponent(out EnemyMovement_NoNavMesh enemy))
             {
                 // Transform location = enemy.gameObject.GetComponent<Transform>();
+                stoneAudioSource.Play();
                 enemy.TurnToStone(enemyStonePrefab);
                 
                 
@@ -37,4 +52,5 @@ public class Medusa : Player
             }
         }
     }
+
 }

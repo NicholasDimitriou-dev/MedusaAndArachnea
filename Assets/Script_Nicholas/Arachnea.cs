@@ -17,6 +17,7 @@ public class Arachnea : Player
             {
                 gravityMod = 0f;
                 isOnWall = true;
+                
             }
             else
             {
@@ -24,6 +25,7 @@ public class Arachnea : Player
                 isOnWall = false;
             }
         }
+        animator.SetBool("IsClimbing",isOnWall);
     }
 
     private bool wallClimb()

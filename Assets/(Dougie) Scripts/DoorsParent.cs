@@ -14,6 +14,8 @@ public class DoorsParent : MonoBehaviour
     //
 
     private event EventHandler checkIfFinished;
+    private AudioSource audioSource;
+    private bool victorySound = true;
     private void Start()
     {
         medusaDoor.MedusaOnDoor += MedusaDoor_OnEntrance;
@@ -25,6 +27,10 @@ public class DoorsParent : MonoBehaviour
 
     }
 
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
 
     private void ArachneaDoor_OnEntrance(object sender, EventArgs e)
@@ -62,13 +68,38 @@ public class DoorsParent : MonoBehaviour
     
     private void CheckIfFinished(object sender, EventArgs e)
     {
-        //if (medusaExit && arachneaExit)
-        //{
-        //    Debug.Log("BOTH CHARACTERS ARE ON THEIR EXITS!!!"); // Commented out for testing
-        //    StartCoroutine(TransitionToNextLevel());
-        //}
+        if (medusaExit && arachneaExit)
+        {
+            // Debug.Log("BOTH CHARACTERS ARE ON THEIR EXITS!!!"); // Commented out for testing
+            if (victorySound)
+            {
+                victorySound = false;
+                audioSource.Play();
+                StartCoroutine(TransitionToNextLevel());
+            }
+        }
 
+        // Added by Rull
+        // if (!levelCompleted && medusaExit && arachneaExit)
+        // if (medusaExit && arachneaExit)
+        // {
+            // if (GameManager.Instance.HasAllCoins())
+            // {
+                // levelCompleted = true;
+                // GameManager.Instance.SetLevelCompleted();
+
+                // StartCoroutine(TransitionToNextLevel());
+            // }
+            // else
+            // {
+                // Debug.Log("Need all coins before exiting!");
+            // }
+        // }
+        // Debug.Log("Medusa: " + medusaExit + " | Arachnea: " + arachneaExit);
+        // Debug.Log("Coins: " + GameManager.Instance.HasAllCoins());
+        
         // Added by Florencio
+        /* Edited my Rull
         if (!levelCompleted && medusaExit && arachneaExit)
         {
             levelCompleted = true; // Added by Florencio
@@ -81,26 +112,44 @@ public class DoorsParent : MonoBehaviour
             StartCoroutine(TransitionToNextLevel());
         }
         //
+        */
     }
 
     IEnumerator TransitionToNextLevel()
     {
-        //yield return new WaitForSeconds(3);
-        //Debug.Log("Changing Level!");          // Commented out for testing
-        //Loader.Load(Loader.Scene.LevelOne);
-
-        // Added by Florencio
         yield return new WaitForSeconds(3);
-        Debug.Log("Changing Level!");
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        if(currentSceneName == "LevelOne(Dupe)")
-        {
-            SceneManager.LoadScene("LevelTwo(Dupe)");
-        }
-        else if(currentSceneName == "LevelTwo(Dupe)")
-        {
-            SceneManager.LoadScene("Credits");
-        }
-        //
+        Debug.Log("Changing Level!");          // Commented out for testing
+        Loader.Load(Loader.Scene.LevelOne);
+
+    //     // Added by Florencio
+    //     yield return new WaitForSeconds(3);
+    //     Debug.Log("Changing Level!");
+    //     string currentSceneName = SceneManager.GetActiveScene().name;
+    //     
+    //     //Edited by Rull
+    //     if(currentSceneName == "LevelOneForanimation")
+    //     {
+    //         SceneManager.LoadScene("LevelTwoForAnimation");
+    //     }
+    //     else if(currentSceneName == "LevelTwoForAnimation")
+    //     {
+    //         SceneManager.LoadScene("LevelThreeForAnimation");
+    //     }
+    //     else if(currentSceneName == "LevelThreeForAnimation")
+    //     {
+    //         SceneManager.LoadScene("CreditsForAnimation");
+    //     }
+    //     /*
+    //     if(currentSceneName == "LevelOne(Dupe)")
+    //     {
+    //         SceneManager.LoadScene("LevelTwo(Dupe)");
+    //     }
+    //     
+    //     else if(currentSceneName == "LevelTwo(Dupe)")
+    //     {
+    //         SceneManager.LoadScene("Credits");
+    //     }
+    //     */
+    //     //
     }
 }

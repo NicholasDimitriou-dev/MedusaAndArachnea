@@ -11,7 +11,7 @@ public class Loader : MonoBehaviour
     }
 
     public static Scene[] levelList = { Scene.LevelOne, Scene.LevelTwo };
-    public static int index = 0;
+    public static int index = 1;
 
     private static Scene targetScene;
 
