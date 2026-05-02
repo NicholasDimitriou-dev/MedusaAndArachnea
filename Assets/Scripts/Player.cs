@@ -184,7 +184,7 @@ public class Player : MonoBehaviour{
         }
         float deltaX = _velocity.x*Time.deltaTime;
         float deltaY = _velocity.y*Time.deltaTime;
-        deltaPosition = new Vector3(deltaX,deltaY,0f);
+        deltaPosition = new Vector3(0f,deltaY,deltaX);
         transform.position += deltaPosition;
         controller.Move(deltaPosition);
 
