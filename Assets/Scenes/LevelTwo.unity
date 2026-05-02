@@ -2307,6 +2307,10 @@ PrefabInstance:
       propertyPath: user
       value: 
       objectReference: {fileID: 657015494}
+    - target: {fileID: 2087056334078417026, guid: d5275e41d8a87064888aa7551bec7bfa, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4126367716970020777, guid: d5275e41d8a87064888aa7551bec7bfa, type: 3}
       propertyPath: m_LocalScale.y
       value: 12
