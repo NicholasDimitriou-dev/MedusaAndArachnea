@@ -17,14 +17,9 @@ public class Medusa : Player
     // }
 
 
-    //Animator animatorUsed;
-    public void Start()
-    {
-        //animatorUsed = GetComponent<Player>().GetComponent<Animator>();
-    }
     public override void Interact()
     {
-        //animatorUsed.SetTrigger("FiredBlast");
+        animator.SetTrigger("FiredBlast");
         Vector3 dir;
         float interactDistance = 5f;
         if (faceRight)

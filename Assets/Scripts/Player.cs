@@ -42,7 +42,7 @@ public class Player : MonoBehaviour{
     private bool canPlay = true;
     [SerializeField] private AudioClip jumpLandingSound;
     
-    [SerializeField] private Animator animator;
+    public Animator animator;
     [SerializeField] private AudioSource beamAudioSource;
     
 
@@ -141,12 +141,19 @@ public class Player : MonoBehaviour{
         {
             if (down.IsPressed())
             {
-                _velocity.y -= 1f;
+                _velocity.y = -10f;
+                // ToggleWalkingSound(true);
             }
 
-            if (up.IsPressed())
+            else if (up.IsPressed())
             {
-                _velocity.y += 1f;
+                _velocity.y = 10f;
+                // ToggleWalkingSound(true);
+            }
+            else
+            {
+                _velocity.y = 0f;
+                // ToggleWalkingSound(false);
             }
             if (direction!= 0f)
             {
@@ -158,12 +165,14 @@ public class Player : MonoBehaviour{
                 
                 _velocity.x += direction*groundAcceleration * Time.deltaTime;
                 _velocity.x = Mathf.Clamp(_velocity.x,-walkSpeed,walkSpeed);
+                // ToggleWalkingSound(true);
 
                 transform.rotation = (direction >0f) ? facingRight : facingLeft;
                 
             }
             else
             {
+                // ToggleWalkingSound(false);
                 _velocity.x = Mathf.MoveTowards(_velocity.x,0f,groundAcceleration*Time.deltaTime);
                 
             }
@@ -283,6 +292,7 @@ public class Player : MonoBehaviour{
     {
         if (canPlay && on)
         {
+            Debug.Log("Playing walking sound");
             audioSource.Play();
             canPlay = false;
         }
@@ -293,6 +303,7 @@ public class Player : MonoBehaviour{
         else if (!canPlay && !on)
         {
             canPlay = true;
+            Debug.Log("Stopping Walking sound");
             IEnumerator pause = PauseSound(audioSource, 0.2f);
             StartCoroutine(pause);
         }
