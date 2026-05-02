@@ -43,6 +43,15 @@ public class Medusa : Player
                 
 
             }
+            if (raycastHit.transform.TryGetComponent(out EnemyMovement_NoNavMesh2 enemy2))
+            {
+                // Transform location = enemy.gameObject.GetComponent<Transform>();
+                stoneAudioSource.Play();
+                enemy2.TurnToStone(enemyStonePrefab);
+                
+                
+
+            }
         }
         if (Physics.Raycast(transform.position, dir, out RaycastHit hit, interactDistance))
         {
