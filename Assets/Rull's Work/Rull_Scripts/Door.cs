@@ -10,6 +10,7 @@ public class Door : MonoBehaviour
 
     // Added 
     [SerializeField] private EnemyMovement_NoNavMesh e;
+    [SerializeField] private EnemyMovement_NoNavMesh2 e2;
     //
     private Vector3 closedPosition;
     private Vector3 openPosition;
@@ -44,7 +45,7 @@ public class Door : MonoBehaviour
         isOpen = open;
 
         //Added
-        if (e != null)
+        if (e != null || e2 != null)
         {
             e.SetDoorOpen(isOpen);
         }
