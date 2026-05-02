@@ -129,6 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Button
   door: {fileID: 6633107508474521898, guid: f38f4d2fc57c7bf459a39074f0e58c50, type: 3}
+  spriteRenderer: {fileID: 0}
+  redSprite: {fileID: 0}
+  greenSprite: {fileID: 0}
   buttonOn: {fileID: 8300000, guid: e9cc7f460f6d8e24e9e4e8e9309e5e78, type: 3}
   buttonOff: {fileID: 8300000, guid: daaed71413554264bb3b82e9d0947aa6, type: 3}
 --- !u!82 &8141291841098432640
@@ -140,7 +143,7 @@ AudioSource:
   m_GameObject: {fileID: 8924291349967846016}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8637391814271035073, guid: a037fffa6975f0d449fca07248c6685d, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
