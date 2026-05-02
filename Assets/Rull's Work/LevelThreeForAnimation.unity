@@ -826,6 +826,7 @@ MonoBehaviour:
   openOffset: {x: 0, y: 2, z: 0}
   speed: 2
   e: {fileID: 0}
+  e2: {fileID: 0}
 --- !u!1 &207251303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,6 +1568,7 @@ MonoBehaviour:
   openOffset: {x: 0, y: 2, z: 0}
   speed: 2
   e: {fileID: 0}
+  e2: {fileID: 0}
 --- !u!65 &386983145
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3103,6 +3105,7 @@ MonoBehaviour:
   openOffset: {x: 0, y: 2, z: 0}
   speed: 2
   e: {fileID: 0}
+  e2: {fileID: 0}
 --- !u!1 &1095085922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3408,6 +3411,7 @@ MonoBehaviour:
   openOffset: {x: 0, y: 0, z: -3}
   speed: 2
   e: {fileID: 0}
+  e2: {fileID: 0}
 --- !u!1 &1166239988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3936,6 +3940,7 @@ MonoBehaviour:
   openOffset: {x: 0, y: -11, z: 0}
   speed: 2
   e: {fileID: 0}
+  e2: {fileID: 0}
 --- !u!65 &1283403171
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4022,17 +4027,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1770826367}
     m_Modifications:
+    - target: {fileID: 518180777663434035, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
+      propertyPath: m_Height
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 518180777663434035, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
+      propertyPath: m_Radius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 518180777663434035, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
+      propertyPath: m_Center.x
+      value: 0.00000007325362
+      objectReference: {fileID: 0}
+    - target: {fileID: 518180777663434035, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
+      propertyPath: m_Center.y
+      value: -0.0000012797628
+      objectReference: {fileID: 0}
+    - target: {fileID: 518180777663434035, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
+      propertyPath: m_Center.z
+      value: -0.00000009099264
+      objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 6.5094004
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.377784
+      value: 4.098579
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.96606004
+      value: 10.480785
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4040,7 +4065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.79302
+      value: -6.931
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4048,19 +4073,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4068,7 +4093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -4082,6 +4107,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1408445650}
+    - target: {fileID: 6355062750125916418, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1594726008}
     - target: {fileID: 8924291349967846016, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
       propertyPath: m_Name
       value: button1 4
@@ -4219,6 +4248,7 @@ MonoBehaviour:
   openOffset: {x: 0, y: 2, z: 0}
   speed: 2
   e: {fileID: 0}
+  e2: {fileID: 0}
 --- !u!1001 &1370377098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4383,8 +4413,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   openOffset: {x: 0, y: 0, z: -5}
-  speed: 2
+  speed: 3
   e: {fileID: 0}
+  e2: {fileID: 0}
 --- !u!65 &1408445651
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4578,6 +4609,11 @@ MeshFilter:
 --- !u!4 &1594726007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2541857466458328500, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
+  m_PrefabInstance: {fileID: 1295428452}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1594726008 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3948477400596265515, guid: e296a8112a6bc9d4289eff7fd616b5a6, type: 3}
   m_PrefabInstance: {fileID: 1295428452}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1642379086
@@ -5653,6 +5689,7 @@ MonoBehaviour:
   openOffset: {x: 0, y: 0, z: -5}
   speed: 2
   e: {fileID: 0}
+  e2: {fileID: 0}
 --- !u!1 &1843740899
 GameObject:
   m_ObjectHideFlags: 0
@@ -5781,6 +5818,7 @@ MonoBehaviour:
   openOffset: {x: 0, y: 0, z: -5}
   speed: 5
   e: {fileID: 0}
+  e2: {fileID: 0}
 --- !u!1 &1884484751
 GameObject:
   m_ObjectHideFlags: 0
