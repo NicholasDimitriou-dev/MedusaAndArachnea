@@ -7,6 +7,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private RectTransform resumeButton;
     [SerializeField] private RectTransform selectLevelButton;
     [SerializeField] private RectTransform exitButton;
+    [SerializeField] private Canvas resolutionUI;
     private bool isPaused = false;
     private void Awake()
     {
@@ -53,12 +54,14 @@ public class PauseManager : MonoBehaviour
         if(Keyboard.current.pKey.wasPressedThisFrame && !isPaused)
         {
             isPaused = true;
+            resolutionUI.gameObject.SetActive(false);
             Time.timeScale = 0f;
             pause.SetActive(true);
         }
         else if (Keyboard.current.pKey.wasPressedThisFrame && isPaused)
         {
             isPaused = false;
+            resolutionUI.gameObject.SetActive(true);
             pause.SetActive(false);
             Time.timeScale = 1f;
         }
