@@ -154,7 +154,7 @@ MonoBehaviour:
   settingsButton: {fileID: 286059761}
   backSettingsButton: {fileID: 1000443989}
   exitButton: {fileID: 1000443989}
-  resolutionUI: {fileID: 1782450948}
+  resolutionUI: {fileID: 0}
   SettingsMenu: {fileID: 1893444137}
   levelSelectMenu: {fileID: 1169682255}
   levelOneButton: {fileID: 2110081757}
@@ -7286,7 +7286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &678995452
 MonoBehaviour:
   m_ObjectHideFlags: 0

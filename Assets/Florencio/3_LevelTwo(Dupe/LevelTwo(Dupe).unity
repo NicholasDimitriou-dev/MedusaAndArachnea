@@ -1801,7 +1801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1383633026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1817,7 +1817,19 @@ MonoBehaviour:
   pause: {fileID: 1238897216}
   resumeButton: {fileID: 1950216411}
   selectLevelButton: {fileID: 316629059}
+  settingsButton: {fileID: 0}
+  backSettingsButton: {fileID: 0}
   exitButton: {fileID: 1521207967}
+  resolutionUI: {fileID: 0}
+  SettingsMenu: {fileID: 0}
+  levelSelectMenu: {fileID: 0}
+  levelOneButton: {fileID: 0}
+  levelTwoButton: {fileID: 0}
+  backButton: {fileID: 0}
+  levelErrorMessage: {fileID: 0}
+  levelTwoImage: {fileID: 0}
+  lockedColor: {r: 0.3137255, g: 0.3137255, b: 0.3137255, a: 1}
+  unlockedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1383633027
 Transform:
   m_ObjectHideFlags: 0

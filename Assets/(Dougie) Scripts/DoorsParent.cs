@@ -74,6 +74,9 @@ public class DoorsParent : MonoBehaviour
             if (victorySound)
             {
                 victorySound = false;
+
+                LevelManager.Instance.CompleteLevel(); // Added by florencio
+
                 audioSource.Play();
                 StartCoroutine(TransitionToNextLevel());
             }
