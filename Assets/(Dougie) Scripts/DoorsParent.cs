@@ -107,19 +107,23 @@ public class DoorsParent : MonoBehaviour
         //if (medusaExit && arachneaExit)
         //{
         //    Debug.Log("BOTH CHARACTERS ARE ON THEIR EXITS!!!");
-        //    string currentSceneName = SceneManager.GetActiveScene().name;
-        //    if(currentSceneName == "LevelOne")
-        //    {
-        //        LevelCompleted.SetLevel1Completed();
-        //    }
-        //    if (currentSceneName == "LevelTwo")
-        //    {
-        //        LevelCompleted.SetLevel2Completed();
-        //    }
-        //    if (currentSceneName == "LevelA")
-        //    {
-        //        LevelCompleted.SetLevel4Completed();
-        //    }
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        if (currentSceneName == "LevelOne")
+        {
+            LevelCompleted.SetLevel1Completed();
+        }
+        if (currentSceneName == "LevelTwo")
+        {
+            LevelCompleted.SetLevel2Completed();
+        }
+        if (currentSceneName == "LevelThreeForAnimation")
+        {
+            LevelCompleted.SetLevel3Completed();
+        }
+        if(currentSceneName == "LevelA")
+        {
+            LevelCompleted.SetLevel4Completed();
+        }
         //    StartCoroutine(TransitionToNextLevel());
         //}
         //

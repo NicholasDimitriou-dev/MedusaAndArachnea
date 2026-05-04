@@ -1,3 +1,4 @@
+using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,18 +19,21 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelErrorText;
     [SerializeField] private RectTransform levelOneButton;
     [SerializeField] private RectTransform levelTwoButton;
+    [SerializeField] private Image levelTwoImage;
+    [SerializeField] private Image levelTwoLocked;
     [SerializeField] private RectTransform levelThreeButton;
+    [SerializeField] private Image levelThreeImage;
+    [SerializeField] private Image levelThreeLocked;
     [SerializeField] private RectTransform levelFourButton;
+    [SerializeField] private Image levelFourImage;
+    [SerializeField] private Image levelFourLocked;
     [SerializeField] private RectTransform lsBackButton;
-    [SerializeField] private Image levelTwo;
-    [SerializeField] private Image levelThree;
-    [SerializeField] private Image levelFour;
 
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private RectTransform sBackButton;
 
-    [SerializeField] private Color lockedColor = new Color(80f, 80f, 80f);
-    [SerializeField] private Color unlockedColor = Color.white;
+    [SerializeField] private Color lockedColor;
+    private Color unlockedColor = Color.white;
 
     private bool isPaused = false;
 
@@ -45,24 +49,20 @@ public class PauseManager : MonoBehaviour
         settingsMenu.SetActive(false);
 
         UpdateLevel2Button();
-        if(PlayerPrefs.GetInt("OpenLevelSelect", 0) == 1)
-        {
-            PlayerPrefs.DeleteKey("OpenLevelSelect");
-            PlayerPrefs.Save();
-        }
-
         UpdateLevel3Button();
-        if(PlayerPrefs.GetInt("OpenLevelSelect", 0) == 1)
-        {
-            PlayerPrefs.DeleteKey("OpenLevelSelect");
-            PlayerPrefs.Save();
-        }
-
         UpdateLevel4Button();
-        if(PlayerPrefs.GetInt("OpenLevelSelect", 0) == 1)
+
+        if (PlayerPrefs.GetInt("OpenLevelSelect", 0) == 1)
         {
             PlayerPrefs.DeleteKey("OpenLevelSelect");
             PlayerPrefs.Save();
+
+            Time.timeScale = 0f;
+            isPaused = true;
+
+            pauseMenu.SetActive(false);
+            settingsMenu.SetActive(false);
+            levelSelectMenu.SetActive(true);
         }
     }
 
@@ -122,18 +122,14 @@ public class PauseManager : MonoBehaviour
 
         if(levelSelectMenu.activeInHierarchy && HoveringOverButton(levelOneButton, mousePosition))
         {
-            SceneManager.LoadScene("LevelOne");
-
-            return;
+            LoadScene("LevelOne");
         }
 
         if(levelSelectMenu.activeInHierarchy && HoveringOverButton(levelTwoButton, mousePosition))
         {
             if(LevelCompleted.IsLevel1Completed())
             {
-                SceneManager.LoadScene("LevelTwo");
-
-                return;
+                LoadScene("LevelTwo");
             }
             else
             {
@@ -147,9 +143,7 @@ public class PauseManager : MonoBehaviour
         {
             if(LevelCompleted.IsLevel2Completed())
             {
-                SceneManager.LoadScene("LevelThreeForAnimation");
-
-                return;
+                LoadScene("LevelThreeForAnimation");
             }
             else
             {
@@ -163,9 +157,7 @@ public class PauseManager : MonoBehaviour
         {
             if(LevelCompleted.IsLevel3Completed())
             {
-                SceneManager.LoadScene("LevelA");
-
-                return;
+                LoadScene("LevelA");
             }
             else
             {
@@ -184,7 +176,7 @@ public class PauseManager : MonoBehaviour
             return;
         }
 
-        if(settingsMenu.activeInHierarchy & HoveringOverButton(sBackButton, mousePosition))
+        if(settingsMenu.activeInHierarchy && HoveringOverButton(sBackButton, mousePosition))
         {
             settingsMenu.SetActive(false);
             levelSelectMenu.SetActive(false);
@@ -233,15 +225,28 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    private void LoadScene(string sceneName)
+    {
+        isPaused = false;
+
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene(sceneName);
+
+        return;
+    }
+
     private void UpdateLevel2Button()
     {
         if(LevelCompleted.IsLevel1Completed())
         {
-            levelTwo.color = unlockedColor;
+            levelTwoImage.color = unlockedColor;
+            levelTwoLocked.gameObject.SetActive(false);
         }
         else
         {
-            levelTwo.color = lockedColor;
+            levelTwoImage.color = lockedColor;
+            levelTwoLocked.gameObject.SetActive(true);
         }
     }
 
@@ -249,11 +254,13 @@ public class PauseManager : MonoBehaviour
     {
         if(LevelCompleted.IsLevel2Completed())
         {
-            levelThree.color = unlockedColor;
+            levelThreeImage.color = unlockedColor;
+            levelThreeLocked.gameObject.SetActive(false);
         }
         else
         {
-            levelThree.color = lockedColor;
+            levelThreeImage.color = lockedColor;
+            levelThreeLocked.gameObject.SetActive(true);
         }
     }
 
@@ -261,11 +268,13 @@ public class PauseManager : MonoBehaviour
     {
         if(LevelCompleted.IsLevel3Completed())
         {
-            levelFour.color = unlockedColor;
+            levelFourImage.color = unlockedColor;
+            levelFourLocked.gameObject.SetActive(false);
         }
         else
         {
-            levelFour.color = unlockedColor;
+            levelFourImage.color = lockedColor;
+            levelFourLocked.gameObject.SetActive(true);
         }
     }
 }
