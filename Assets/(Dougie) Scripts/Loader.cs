@@ -7,10 +7,13 @@ public class Loader : MonoBehaviour
     {
         LevelOne,
         LevelTwo,
+        LevelThreeForAnimation,
+        LevelA,
+        Credits,
         LoadingScene,
     }
 
-    public static Scene[] levelList = { Scene.LevelOne, Scene.LevelTwo };
+    public static Scene[] levelList = { Scene.LevelOne, Scene.LevelTwo, Scene.LevelThreeForAnimation, Scene.LevelA, Scene.Credits};
     public static int index = 1;
 
     private static Scene targetScene;
