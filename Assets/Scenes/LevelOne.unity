@@ -9123,7 +9123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5072437099054596198, guid: ad3ea13f9a9ce2d458ffadacb23ac063, type: 3}
       propertyPath: FovRange.y
-      value: 71.849174
+      value: 74.832405
       objectReference: {fileID: 0}
     - target: {fileID: 8455633969865568060, guid: ad3ea13f9a9ce2d458ffadacb23ac063, type: 3}
       propertyPath: m_Enabled
