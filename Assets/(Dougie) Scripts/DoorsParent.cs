@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +10,7 @@ public class DoorsParent : MonoBehaviour
     private bool medusaExit = false;
     private bool arachneaExit = false;
     // Added by Florencio
-    private bool levelCompleted = false;
+
     //
 
     private event EventHandler checkIfFinished;
@@ -74,6 +74,9 @@ public class DoorsParent : MonoBehaviour
             if (victorySound)
             {
                 victorySound = false;
+
+                //LevelManager.Instance.CompleteLevel(); // Added by florencio
+
                 audioSource.Play();
                 StartCoroutine(TransitionToNextLevel());
             }
@@ -83,36 +86,48 @@ public class DoorsParent : MonoBehaviour
         // if (!levelCompleted && medusaExit && arachneaExit)
         // if (medusaExit && arachneaExit)
         // {
-            // if (GameManager.Instance.HasAllCoins())
-            // {
-                // levelCompleted = true;
-                // GameManager.Instance.SetLevelCompleted();
+        // if (GameManager.Instance.HasAllCoins())
+        // {
+        // levelCompleted = true;
+        // GameManager.Instance.SetLevelCompleted();
 
-                // StartCoroutine(TransitionToNextLevel());
-            // }
-            // else
-            // {
-                // Debug.Log("Need all coins before exiting!");
-            // }
+        // StartCoroutine(TransitionToNextLevel());
+        // }
+        // else
+        // {
+        // Debug.Log("Need all coins before exiting!");
+        // }
         // }
         // Debug.Log("Medusa: " + medusaExit + " | Arachnea: " + arachneaExit);
         // Debug.Log("Coins: " + GameManager.Instance.HasAllCoins());
-        
+
         // Added by Florencio
-        /* Edited my Rull
-        if (!levelCompleted && medusaExit && arachneaExit)
+        ///* Edited my Rull
+        ///
+        //if (medusaExit && arachneaExit)
+        //{
+        //    Debug.Log("BOTH CHARACTERS ARE ON THEIR EXITS!!!");
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        if (currentSceneName == "LevelOne")
         {
-            levelCompleted = true; // Added by Florencio
-            Debug.Log("BOTH CHARACTERS ARE ON THEIR EXITS!!!");
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            if(currentSceneName == "LevelOne(Dupe)")
-            {
-                LevelCompleted.SetLevel1Completed();
-            }
-            StartCoroutine(TransitionToNextLevel());
+            LevelCompleted.SetLevel1Completed();
         }
+        if (currentSceneName == "LevelTwo")
+        {
+            LevelCompleted.SetLevel2Completed();
+        }
+        if (currentSceneName == "LevelThreeForAnimation")
+        {
+            LevelCompleted.SetLevel3Completed();
+        }
+        if(currentSceneName == "LevelA")
+        {
+            LevelCompleted.SetLevel4Completed();
+        }
+        //    StartCoroutine(TransitionToNextLevel());
+        //}
         //
-        */
+        //*/
     }
 
     IEnumerator TransitionToNextLevel()
@@ -121,35 +136,26 @@ public class DoorsParent : MonoBehaviour
         Debug.Log("Changing Level!");          // Commented out for testing
         Loader.Load(Loader.Scene.LevelOne);
 
-    //     // Added by Florencio
-    //     yield return new WaitForSeconds(3);
-    //     Debug.Log("Changing Level!");
-    //     string currentSceneName = SceneManager.GetActiveScene().name;
-    //     
-    //     //Edited by Rull
-    //     if(currentSceneName == "LevelOneForanimation")
-    //     {
-    //         SceneManager.LoadScene("LevelTwoForAnimation");
-    //     }
-    //     else if(currentSceneName == "LevelTwoForAnimation")
-    //     {
-    //         SceneManager.LoadScene("LevelThreeForAnimation");
-    //     }
-    //     else if(currentSceneName == "LevelThreeForAnimation")
-    //     {
-    //         SceneManager.LoadScene("CreditsForAnimation");
-    //     }
-    //     /*
-    //     if(currentSceneName == "LevelOne(Dupe)")
-    //     {
-    //         SceneManager.LoadScene("LevelTwo(Dupe)");
-    //     }
-    //     
-    //     else if(currentSceneName == "LevelTwo(Dupe)")
-    //     {
-    //         SceneManager.LoadScene("Credits");
-    //     }
-    //     */
-    //     //
+        //     // Added by Florencio
+        //     yield return new WaitForSeconds(3);
+        ////     Debug.Log("Changing Level!");
+        //string currentSceneName = SceneManager.GetActiveScene().name;
+
+        ////Edited by Rull
+        //if (currentSceneName == "LevelOne")
+        //{
+        //    SceneManager.LoadScene("LevelTwo");
+        //}
+        //else if (currentSceneName == "LevelTwo")
+        //{
+        //    SceneManager.LoadScene("LevelA");
+        //}
+        //else if (currentSceneName == "LevelA")
+        //{
+        //    SceneManager.LoadScene("Credits");
+        //}
+        ///*
+   //     */
+        //     //
     }
 }
