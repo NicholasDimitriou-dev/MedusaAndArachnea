@@ -4392,9 +4392,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 521907473}
-  - {fileID: 1445143444}
-  - {fileID: 1482398746}
-  - {fileID: 1506707522}
   - {fileID: 1337677601}
   - {fileID: 576681792}
   - {fileID: 216836197}
@@ -5640,6 +5637,10 @@ PrefabInstance:
     - target: {fileID: 2626758760680911207, guid: 46c80d2cbeea8194094fd1d174084513, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967726065434910912, guid: 46c80d2cbeea8194094fd1d174084513, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.2238526
       objectReference: {fileID: 0}
     - target: {fileID: 3183114138435167208, guid: 46c80d2cbeea8194094fd1d174084513, type: 3}
       propertyPath: enemyPath
@@ -8780,6 +8781,10 @@ PrefabInstance:
       value: Target Group
       objectReference: {fileID: 0}
     - target: {fileID: 8978323300499486793, guid: 5cc29b3dccab45d48953f1044906daca, type: 3}
+      propertyPath: Targets.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978323300499486793, guid: 5cc29b3dccab45d48953f1044906daca, type: 3}
       propertyPath: Targets.Array.data[0].Object
       value: 
       objectReference: {fileID: 514343041}
@@ -9112,6 +9117,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5072437099054596198, guid: ad3ea13f9a9ce2d458ffadacb23ac063, type: 3}
+      propertyPath: FovRange.x
+      value: 6.217865
+      objectReference: {fileID: 0}
+    - target: {fileID: 5072437099054596198, guid: ad3ea13f9a9ce2d458ffadacb23ac063, type: 3}
+      propertyPath: FovRange.y
+      value: 71.849174
+      objectReference: {fileID: 0}
     - target: {fileID: 8455633969865568060, guid: ad3ea13f9a9ce2d458ffadacb23ac063, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -9169,5 +9182,6 @@ SceneRoots:
   - {fileID: 2186436753582083314}
   - {fileID: 2116323757}
   - {fileID: 5332494328842727538}
-  - {fileID: 312363748}
-  - {fileID: 1212934030}
+  - {fileID: 756490432}
+  - {fileID: 1006388001}
+  - {fileID: 2127662775}
